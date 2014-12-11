@@ -106,7 +106,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud">
-						<a href="/tags/linux/" style="font-size: NaNpx;">linux</a><a href="/tags/mongo/" style="font-size: NaNpx;">mongo</a><a href="/tags/php/" style="font-size: NaNpx;">php</a><a href="/tags/日志分析/" style="font-size: NaNpx;">日志分析</a>
+						<a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mongo/" style="font-size: 10.00px;">mongo</a><a href="/tags/php/" style="font-size: 10.00px;">php</a><a href="/tags/日志分析/" style="font-size: 10.00px;">日志分析</a>
 					</div>
 				</section>
 				
@@ -174,6 +174,55 @@
 	</div>
 </nav>
       
+  
+    <article id="post-iTerm-Term-vim配色方案" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/12/11/iTerm-Term-vim配色方案/" class="article-date">
+  	<time datetime="2014-12-11T04:47:19.000Z" itemprop="datePublished">Dec 11 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/12/11/iTerm-Term-vim配色方案/">iTerm/Term/vim配色方案</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>小伙伴们应该也对编辑器的配色头疼，并不时地更新自己的配色。个人也比较头疼，最终找到一个不错的配色方案，支持iterm、vim、emacs、netbeans等等。<br>给出github地址：<a href="https://github.com/altercation/solarized。" target="_blank" rel="external">https://github.com/altercation/solarized。</a></p>
+<h3 id="Terminal/iTerm2">Terminal/iTerm2</h3>
+<p>Mac OS X 自带的 Terminal 和免费的 iTerm2 都是很好用的工具，iTerm2 可以切分成多窗口，更方便一些。<br>如果你使用的是 Terminal 的话，在 solarized/osx-terminal.app-colors-solarized 下双击 Solarized Dark ansi.terminal 和 Solarized Light ansi.terminal 就会自动导入两种配色方案 Dark 和 Light 到 Terminal.app 里。<br>如果你使用的是 iTerm2 的话，到 solarized/iterm2-colors-solarized 下双击 Solarized Dark.itermcolors 和 Solarized Light.itermcolors 两个文件就可以把配置文件导入到 iTerm 里。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-top查看各cpu信息" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -474,68 +523,6 @@ DELETE FROM users <span class="keyword">WHERE</span> z<span class="subst">=</spa
         <p>关于服务器接口访问的操作时间简单分析，通过awk实现。</p>
 <pre><code>$ cat server.log.<span class="number">20141201</span> | awk '{gsub(/[^<span class="number">0</span>-<span class="number">9</span>]/,<span class="string">""</span>,$<span class="number">8</span>);a[$<span class="number">3</span>]+=$<span class="number">8</span>;b[$<span class="number">3</span>]+=<span class="number">1</span>} <span class="type">END</span> {<span class="keyword">for</span>( i <span class="keyword">in</span> a) {printf(<span class="string">"%d\t%5.2f\t%s\n"</span>,b[i], a[i]/b[i],i) }}'
 </code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/12/08/hello-world/" class="article-date">
-  	<time datetime="2014-12-08T04:32:43.000Z" itemprop="datePublished">Dec 8 2014</time>
-</a>
-      
-      
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/08/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">trobuleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2>
-<h3 id="Create_a_new_post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
       
     </div>
     <footer class="article-footer">
