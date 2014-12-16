@@ -106,7 +106,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud">
-						<a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mongo/" style="font-size: 10.00px;">mongo</a><a href="/tags/php/" style="font-size: 10.00px;">php</a><a href="/tags/redis/" style="font-size: 10.00px;">redis</a><a href="/tags/日志分析/" style="font-size: 10.00px;">日志分析</a>
+						<a href="/tags/NetBeans/" style="font-size: 10.00px;">NetBeans</a><a href="/tags/game/" style="font-size: 10.00px;">game</a><a href="/tags/http/" style="font-size: 10.00px;">http</a><a href="/tags/ide/" style="font-size: 10.00px;">ide</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mongo/" style="font-size: 10.00px;">mongo</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/php/" style="font-size: 15.00px;">php</a><a href="/tags/rank/" style="font-size: 10.00px;">rank</a><a href="/tags/redis/" style="font-size: 10.00px;">redis</a><a href="/tags/sign/" style="font-size: 10.00px;">sign</a><a href="/tags/token/" style="font-size: 10.00px;">token</a><a href="/tags/加密/" style="font-size: 10.00px;">加密</a><a href="/tags/日志分析/" style="font-size: 10.00px;">日志分析</a>
 					</div>
 				</section>
 				
@@ -175,6 +175,277 @@
 </nav>
       
   
+    <article id="post-token设计" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/12/16/token设计/" class="article-date">
+  	<time datetime="2014-12-16T08:48:08.000Z" itemprop="datePublished">Dec 16 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/token/">token</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/12/16/token设计/">token设计</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>token作为http通信安全性方面的一个验证被广泛使用。不同的业务场景，token的设计也不同。<br>不过通常来说，token包含下面特性：1）必要的业务数据；2）签名串；3）自验证；4）可解析。</p>
+<h3 id="游戏通信的一种token设计">游戏通信的一种token设计</h3>
+<p>下面就游戏通信方面给出一个设计，直接给出php代码</p>
+<pre><code><span class="comment">/**
+ * 获取通信access token
+ *
+ *<span class="phpdoc"> @param</span> string $platform 游戏平台
+ *<span class="phpdoc"> @param</span> string $section  游戏分区
+ *<span class="phpdoc"> @param</span> string $uid      玩家uid
+ *<span class="phpdoc"> @param</span> int    $t        时间戳
+ *<span class="phpdoc"> @param</span> int    $life     生命周期
+ *<span class="phpdoc"> @param</span> string $secret   签名串需要的密钥
+ *<span class="phpdoc"> @return</span> string
+ */</span>
+<span class="function"><span class="keyword">function</span> <span class="title">getAccessToken</span><span class="params">(<span class="variable">$platform</span>, <span class="variable">$section</span>, <span class="variable">$uid</span>, <span class="variable">$t</span>, <span class="variable">$life</span>, <span class="variable">$secret</span>)</span>
+</span>{
+    <span class="variable">$params</span> = <span class="keyword">array</span>(
+        <span class="string">'platfrom'</span> =&gt; <span class="variable">$platform</span>,
+        <span class="string">'section'</span>  =&gt; <span class="variable">$section</span>,
+        <span class="string">'uid'</span>      =&gt; <span class="variable">$uid</span>,
+        <span class="string">'t'</span>        =&gt; <span class="variable">$t</span>,
+        <span class="string">'life'</span>     =&gt; <span class="variable">$life</span>,
+    );
+    <span class="variable">$sign</span> = getSign(<span class="variable">$params</span>, <span class="variable">$secret</span>); <span class="comment">// 该接口参照以前写的签名设计</span>
+    <span class="keyword">return</span> sprintf(<span class="string">"1.%s.%s.%d.%d.$d.$s"</span>, <span class="variable">$platform</span>, <span class="variable">$section</span>, <span class="variable">$uid</span>, <span class="variable">$t</span>, <span class="variable">$life</span>, <span class="variable">$sign</span>);
+}
+
+<span class="comment">/**
+ * 检测access token有效性
+ * 
+ *<span class="phpdoc"> @param</span> string $token
+ *<span class="phpdoc"> @return</span> bool
+ */</span>
+<span class="function"><span class="keyword">function</span> <span class="title">checkAccessToken</span><span class="params">()</span>
+</span>{
+    <span class="keyword">list</span>(<span class="variable">$type</span>, platform, <span class="variable">$section</span>, <span class="variable">$uid</span>, <span class="variable">$t</span>, <span class="variable">$life</span>, <span class="variable">$sign</span>) = explode(<span class="string">'.'</span>, <span class="variable">$token</span>);
+    <span class="variable">$params</span> = <span class="keyword">array</span>(
+        <span class="string">'platfrom'</span> =&gt; <span class="variable">$platform</span>,
+        <span class="string">'section'</span>  =&gt; <span class="variable">$section</span>,
+        <span class="string">'uid'</span>      =&gt; <span class="variable">$uid</span>,
+        <span class="string">'t'</span>        =&gt; <span class="variable">$t</span>,
+        <span class="string">'life'</span>     =&gt; <span class="variable">$life</span>,
+    );
+    <span class="keyword">return</span> <span class="variable">$sign</span> == getSign(<span class="variable">$params</span>, <span class="variable">$secret</span>)
+}
+</code></pre><h3 id="时效性解决">时效性解决</h3>
+<p>上面给出的算法，能验证token的正确性，也可以通过（$t + $life）小于当前时间戳来简单处理时效问题。但是在生命周期中，如果多点登录，任一登陆点的token都有效。<br>为解决这一问题，一般会采用redis或者memcache，存储每次登录的时间，验证token时，可通过$t与登录时间的比对，验证token生命周期。<br>上面的解决方法仍由一个缺陷，玩家单点登录，如果申请多个token，那么也会有多个有效token。我们可以在省城token时，更新缓存时间来解决问题。有人说，可以通过存储token，当重新申请token时，如果原有token有效，直接返回原token。token的自验证就是为了不存储的，所以不建议存储token。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-几种加密算法" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/12/13/几种加密算法/" class="article-date">
+  	<time datetime="2014-12-13T12:10:54.000Z" itemprop="datePublished">Dec 13 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sign/">sign</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/加密/">加密</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/12/13/几种加密算法/">几种加密算法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>下面给出几种加密算法，有的可逆，有的不可逆，用于不同的场景。</p>
+<h3 id="签名">签名</h3>
+<p>该签名算法将参数排序，加上密钥，然后计算md5值，该算法不可逆。<br>该算法可用于以下情况：1）网络通信，通信双方约定密钥，对于请求参数进行加密，用于验证请求正确性；2）颁发token，密钥自己保留，对方拿token请求自己的数据，用于验证权限等。<br>算法的php实现如下：</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">getSign</span><span class="params">(<span class="variable">$params</span>, <span class="variable">$secret</span>, <span class="variable">$sign_key</span> = <span class="string">'sign'</span>)</span>
+</span>{
+    <span class="variable">$str</span> = <span class="string">''</span>;
+    ksort(<span class="variable">$params</span>);
+    <span class="keyword">foreach</span> (<span class="variable">$params</span> <span class="keyword">as</span> <span class="variable">$k</span> =&gt; <span class="variable">$v</span>) {
+        <span class="keyword">if</span> (<span class="variable">$k</span> != <span class="variable">$sign_key</span>) {
+            <span class="variable">$str</span> .= <span class="string">"$k=$v"</span>;
+        }
+    }
+    <span class="variable">$str</span> .= <span class="variable">$secret</span>;
+    <span class="keyword">return</span> md5(<span class="variable">$str</span>);
+}
+</code></pre><h3 id="id可逆加密">id可逆加密</h3>
+<p>该算法用于id加密，算法可逆，能反解出id。该算法目的是保护真实id，将加密后id返给使用者。<br>该算法的php实现如下：</p>
+<pre><code><span class="comment">// 加密算法</span>
+<span class="function"><span class="keyword">function</span> <span class="title">encodeId</span><span class="params">(<span class="variable">$id</span>)</span>
+</span>{
+    <span class="variable">$sid</span>  = (<span class="variable">$id</span> &amp; <span class="number">0x0000ff00</span>) &lt;&lt; <span class="number">16</span>;
+    <span class="variable">$sid</span> += ((<span class="variable">$id</span> &amp; <span class="number">0xff000000</span>) &gt;&gt; <span class="number">8</span>) &amp; <span class="number">0x00ff0000</span>;
+    <span class="variable">$sid</span> += (<span class="variable">$id</span> &amp; <span class="number">0x000000ff</span>) &lt;&lt; <span class="number">8</span>;
+    <span class="variable">$sid</span> += (<span class="variable">$id</span> &amp; <span class="number">0x00ff0000</span>) &gt;&gt; <span class="number">16</span>;
+    <span class="variable">$sid</span> ^= <span class="number">818329</span>; <span class="comment">//该值定了就不能再改了，否则就出问题了</span>
+    <span class="keyword">return</span> <span class="variable">$sid</span>;
+}
+<span class="comment">// 解密算法</span>
+<span class="function"><span class="keyword">function</span> <span class="title">decodeId</span><span class="params">(<span class="variable">$sid</span>)</span>
+</span>{
+    <span class="keyword">if</span> (!is_numeric(<span class="variable">$sid</span>)) {
+        <span class="keyword">return</span> <span class="keyword">false</span>;
+    }
+    <span class="variable">$sid</span> ^= <span class="number">818329</span>; <span class="comment">//该值定了就不能再改了，同加密算法，否则就出问题了</span>
+    <span class="variable">$id</span>   = (<span class="variable">$sid</span> &amp; <span class="number">0x00ff0000</span>) &lt;&lt; <span class="number">8</span>;
+    <span class="variable">$id</span>  += (<span class="variable">$sid</span> &amp; <span class="number">0x000000ff</span>) &lt;&lt; <span class="number">16</span>;
+    <span class="variable">$id</span>  += ((<span class="variable">$sid</span> &amp; <span class="number">0xff000000</span>) &gt;&gt; <span class="number">16</span>) &amp; <span class="number">0x0000ff00</span>;
+    <span class="variable">$id</span>  += (<span class="variable">$sid</span> &amp; <span class="number">0x0000ff00</span>) &gt;&gt; <span class="number">8</span>;
+    <span class="keyword">return</span> <span class="variable">$id</span>;
+}
+</code></pre><h3 id="对称加密">对称加密</h3>
+<p>该算法可用于数据加密，是一种对称加密，能保护数据安全。<br>该算法的php实现如下：</p>
+<pre><code><span class="comment">// 加密</span>
+<span class="function"><span class="keyword">function</span> <span class="title">encrypt</span><span class="params">(<span class="variable">$id</span>, <span class="variable">$secret</span>)</span>
+</span>{
+    <span class="variable">$md5_v</span> = md5(<span class="variable">$secret</span>);
+    <span class="comment">// Open the cipher</span>
+    <span class="variable">$td</span> = mcrypt_module_open(<span class="string">'rijndael-128'</span>, <span class="string">''</span>, <span class="string">'cbc'</span>, <span class="string">''</span>);
+    <span class="comment">// Create key and IV</span>
+    <span class="variable">$key</span> = substr(<span class="variable">$md5_v</span>, <span class="number">0</span>, <span class="number">16</span>);
+    <span class="variable">$iv</span>  = strrev(substr(<span class="variable">$md5_v</span>, <span class="number">0</span>, <span class="number">16</span>));
+    <span class="comment">// Intialize encryption，不满16字符后面补\0</span>
+    mcrypt_generic_init(<span class="variable">$td</span>, <span class="variable">$key</span>, <span class="variable">$iv</span>);
+    <span class="comment">// Encrypt data</span>
+    <span class="variable">$id</span> = mcrypt_generic(<span class="variable">$td</span>, trim(<span class="variable">$id</span>));
+    <span class="comment">// Terminate encryption handler and close module</span>
+    mcrypt_generic_deinit(<span class="variable">$td</span>);
+    mcrypt_module_close(<span class="variable">$td</span>);
+    <span class="keyword">return</span> base64_encode(<span class="variable">$id</span>);
+}
+<span class="comment">// 解密</span>
+<span class="function"><span class="keyword">function</span> <span class="title">decrypt</span><span class="params">(<span class="variable">$id</span>, <span class="variable">$secret</span>)</span>
+</span>{   
+    <span class="variable">$id</span> = base64_decode(<span class="variable">$id</span>);
+    <span class="keyword">if</span> (<span class="keyword">empty</span>(<span class="variable">$id</span>)) {
+        <span class="keyword">return</span> <span class="keyword">false</span>;
+    }
+    <span class="variable">$md5_v</span> = md5(<span class="variable">$secret</span>);
+    <span class="comment">// Open the cipher</span>
+    <span class="variable">$td</span> = mcrypt_module_open(<span class="string">'rijndael-128'</span>, <span class="string">''</span>, <span class="string">'cbc'</span>, <span class="string">''</span>);
+    <span class="comment">// Create key and IV，不满16字符后面补\0</span>
+    <span class="variable">$key</span> = substr(<span class="variable">$md5_v</span>, <span class="number">0</span>, <span class="number">16</span>);
+    <span class="variable">$iv</span> = strrev(substr(<span class="variable">$md5_v</span>, <span class="number">0</span>, <span class="number">16</span>));
+    <span class="comment">// Intialize encryption</span>
+    mcrypt_generic_init(<span class="variable">$td</span>, <span class="variable">$key</span>, <span class="variable">$iv</span>);
+    <span class="comment">// Encrypt data</span>
+    <span class="variable">$id</span> = mdecrypt_generic(<span class="variable">$td</span>, <span class="variable">$id</span>);
+    <span class="comment">// Terminate encryption handler and close module</span>
+    mcrypt_generic_deinit(<span class="variable">$td</span>);
+    mcrypt_module_close(<span class="variable">$td</span>);
+    <span class="keyword">return</span> trim(<span class="variable">$id</span>);
+}
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-NetBeans缓存更新" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/12/13/NetBeans缓存更新/" class="article-date">
+  	<time datetime="2014-12-13T04:43:45.000Z" itemprop="datePublished">Dec 13 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NetBeans/">NetBeans</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ide/">ide</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/12/13/NetBeans缓存更新/">NetBeans缓存更新</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>更新NetBeans后，ide的提示经常出错，通过更新ide缓存即可解决该问题。更新方式吗，那就是暴力删除了:)，如果怕删除太危险，可以移到备份。<br>NetBeans的缓存地址如下：</p>
+<pre><code>mac     /Users/&lt;username&gt;/Library/Caches/NetBeans/xxx/
+windows C:<span class="command">\Users</span><span class="command">\&lt;</span>username&gt;<span class="command">\AppData</span><span class="command">\Local</span><span class="command">\NetBeans</span><span class="command">\Cache</span><span class="command">\xxx</span><span class="command">\
+</span>unix    /home/&lt;username&gt;/.cache/netbeans/xxx/
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
     <article id="post-redis有序集根据key排序问题" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -183,7 +454,7 @@
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/game/">game</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rank/">rank</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
 
     </div>
   
@@ -377,7 +648,7 @@ Swap:        0k total,        0k used,        0k free,  <span class="number">372
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
 
     </div>
   
@@ -455,7 +726,7 @@ total_l=`awk <span class="string">'END{print NR}'</span> <span class="variable">
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongo/">mongo</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongo/">mongo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
 
     </div>
   

@@ -3,23 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>iTerm/Term/vim配色方案 | sTa4ever 博客</title>
+  <title>Tag: rank | sTa4ever 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="小伙伴们应该也对编辑器的配色头疼，并不时地更新自己的配色。个人也比较头疼，最终找到一个不错的配色方案，支持iterm、vim、emacs、netbeans等等。给出github地址：https://github.com/altercation/solarized。
-Terminal/iTerm2
-Mac OS X 自带的 Terminal 和免费的 iTerm2 都是很好用的工具，iTerm2 可">
-<meta property="og:type" content="article">
-<meta property="og:title" content="iTerm/Term/vim配色方案">
-<meta property="og:url" content="http://yoursite.com/2014/12/11/iTerm-Term-vim配色方案/">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="sTa4ever 博客">
+<meta property="og:url" content="http://yoursite.com/tags/rank/">
 <meta property="og:site_name" content="sTa4ever 博客">
-<meta property="og:description" content="小伙伴们应该也对编辑器的配色头疼，并不时地更新自己的配色。个人也比较头疼，最终找到一个不错的配色方案，支持iterm、vim、emacs、netbeans等等。给出github地址：https://github.com/altercation/solarized。
-Terminal/iTerm2
-Mac OS X 自带的 Terminal 和免费的 iTerm2 都是很好用的工具，iTerm2 可">
+<meta property="og:description">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iTerm/Term/vim配色方案">
-<meta name="twitter:description" content="小伙伴们应该也对编辑器的配色头疼，并不时地更新自己的配色。个人也比较头疼，最终找到一个不错的配色方案，支持iterm、vim、emacs、netbeans等等。给出github地址：https://github.com/altercation/solarized。
-Terminal/iTerm2
-Mac OS X 自带的 Terminal 和免费的 iTerm2 都是很好用的工具，iTerm2 可">
+<meta name="twitter:title" content="sTa4ever 博客">
+<meta name="twitter:description">
 
   
     <link rel="alternative" href="/atom.xml" title="sTa4ever 博客" type="application/atom+xml">
@@ -179,15 +173,17 @@ Mac OS X 自带的 Terminal 和免费的 iTerm2 都是很好用的工具，iTerm
 		</header>				
 	</div>
 </nav>
-      <article id="post-iTerm-Term-vim配色方案" class="article article-type-post" itemscope itemprop="blogPost">
+      
+  
+    <article id="post-redis有序集根据key排序问题" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/12/11/iTerm-Term-vim配色方案/" class="article-date">
-  	<time datetime="2014-12-11T04:47:19.000Z" itemprop="datePublished">Dec 11 2014</time>
+      <a href="/2014/12/12/redis有序集根据key排序问题/" class="article-date">
+  	<time datetime="2014-12-12T03:17:21.000Z" itemprop="datePublished">Dec 12 2014</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/game/">game</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rank/">rank</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
 
     </div>
   
@@ -199,8 +195,8 @@ Mac OS X 自带的 Terminal 和免费的 iTerm2 都是很好用的工具，iTerm
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      iTerm/Term/vim配色方案
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/12/12/redis有序集根据key排序问题/">redis有序集根据key排序问题</a>
     </h1>
   
 
@@ -208,9 +204,40 @@ Mac OS X 自带的 Terminal 和免费的 iTerm2 都是很好用的工具，iTerm
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>小伙伴们应该也对编辑器的配色头疼，并不时地更新自己的配色。个人也比较头疼，最终找到一个不错的配色方案，支持iterm、vim、emacs、netbeans等等。<br>给出github地址：<a href="https://github.com/altercation/solarized。" target="_blank" rel="external">https://github.com/altercation/solarized。</a></p>
-<h3 id="Terminal/iTerm2">Terminal/iTerm2</h3>
-<p>Mac OS X 自带的 Terminal 和免费的 iTerm2 都是很好用的工具，iTerm2 可以切分成多窗口，更方便一些。<br>如果你使用的是 Terminal 的话，在 solarized/osx-terminal.app-colors-solarized 下双击 Solarized Dark ansi.terminal 和 Solarized Light ansi.terminal 就会自动导入两种配色方案 Dark 和 Light 到 Terminal.app 里。<br>如果你使用的是 iTerm2 的话，到 solarized/iterm2-colors-solarized 下双击 Solarized Dark.itermcolors 和 Solarized Light.itermcolors 两个文件就可以把配置文件导入到 iTerm 里。</p>
+        <h3 id="redis_有序集达不到预期排行的问题">redis 有序集达不到预期排行的问题</h3>
+<p>游戏中经常用redis的有序集做排行，排行的key采用uid，排序积分用游戏数值。不同玩家，游戏数值经常相同，理想情况下，应该是早达到该数值的玩家排行在前。<br>由于redis有序集具有排行积分相同的，按照key进行排序的特性，我们的排序总是达不到预期的结果。<br>比如下面一个示例:</p>
+<pre><code><span class="input"><span class="prompt">redis 127.0.0.1:53000&gt;</span> del test</span>
+<span class="input"><span class="prompt">(integer) 1
+redis 127.0.0.1:53000&gt;</span> zadd test <span class="number">10</span> <span class="number">1</span></span>
+<span class="input"><span class="prompt">(integer) 1
+redis 127.0.0.1:53000&gt;</span> zadd test <span class="number">10</span> <span class="number">3</span></span>
+<span class="input"><span class="prompt">(integer) 1
+redis 127.0.0.1:53000&gt;</span> zadd test <span class="number">10</span> <span class="number">2</span></span>
+<span class="input"><span class="prompt">(integer) 1
+redis 127.0.0.1:53000&gt;</span> zrange test <span class="number">0</span> -<span class="number">1</span> withscores</span>
+<span class="number">1</span>) <span class="string">"1"</span>
+<span class="number">2</span>) <span class="string">"10"</span>
+<span class="number">3</span>) <span class="string">"2"</span>
+<span class="number">4</span>) <span class="string">"10"</span>
+<span class="number">5</span>) <span class="string">"3"</span>
+<span class="number">6</span>) <span class="string">"10"</span>
+</code></pre><p>其实我们期望的排序应该是1、3、2。</p>
+<h3 id="排行积分中增加时间解决该问题">排行积分中增加时间解决该问题</h3>
+<p>我们期望越早进入排行的玩家排行在前，如果用redis的有序集做排行，仅用游戏数值做排行积分无法满足我们的需求，考虑到时间因素，因而想到将时间加入的排行积分也就水到渠成。<br>具体的算法以下面的周排行为例：</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">getRedisPoint</span><span class="params">(<span class="variable">$point</span>)</span>
+</span>{
+    <span class="variable">$_t</span>    = time();
+    <span class="variable">$index</span> = date(<span class="string">'N'</span>, <span class="variable">$_t</span>);
+    <span class="variable">$begin</span> = strtotime(date(<span class="string">'Y-m-d'</span>, <span class="variable">$_t</span>));
+    <span class="variable">$min</span>   = (<span class="variable">$index</span> - <span class="number">1</span>) * <span class="number">1440</span> + ceil((SVR_NOW - <span class="variable">$begin</span>) / <span class="number">60</span>);
+    <span class="keyword">return</span> <span class="variable">$point</span> * <span class="number">20000</span> - <span class="variable">$min</span>;
+}
+</code></pre><p>上例为计算redis周排行的一个示例，1440是一天的分钟数（60*24），一周总共10080，为计算方便采用20000，当然可以选择大于10080的任意数值。<br>计算真正积分的算法如下：</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">getRealPoint</span><span class="params">(<span class="variable">$point</span>)</span>
+</span>{
+    <span class="keyword">return</span> <span class="variable">$point</span> &gt; <span class="number">20000</span> ? ceil(<span class="variable">$point</span> / <span class="number">20000</span>) : <span class="variable">$point</span>;
+}
+</code></pre><p>其他的排行也类似，不过是选取不同的常数。</p>
 
       
     </div>
@@ -220,68 +247,15 @@ Mac OS X 自带的 Terminal 和免费的 iTerm2 都是很好用的工具，iTerm
     </footer>
   </div>
   
-    
-<nav id="article-nav">
-  
-    <a href="/2014/12/12/redis有序集根据key排序问题/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">&lt;</strong>
-      <div class="article-nav-title">
-        
-          redis有序集根据key排序问题
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2014/12/10/top查看各cpu信息/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">top查看各cpu信息</div>
-      <strong class="article-nav-caption">&gt;</strong>
-    </a>
-  
-</nav>
-
-  
 </article>
 
 
-<div class="share">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到：</span>
-		<a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
-</div>
 
 
 
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="iTerm-Term-vim配色方案" data-title="iTerm/Term/vim配色方案" data-url="http://yoursite.com/2014/12/11/iTerm-Term-vim配色方案/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"true"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
 
-
-
+  
+  
 
       <footer id="footer">
   <div class="outer">
