@@ -3,20 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>接口操作时间统计 | sTa4ever 博客</title>
+  <title>Tag: gdb | sTa4ever 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="关于服务器接口访问的操作时间简单分析，通过awk实现。
-$ cat server.log.20141201 | awk '{gsub(/[^0-9]/,'',$8);a[$3]+=$8;b[$3]+=1} END {for( i in a) {printf('%d\t%5.2f\t%s\n',b[i], a[i]/b[i],i) }}'">
-<meta property="og:type" content="article">
-<meta property="og:title" content="接口操作时间统计">
-<meta property="og:url" content="http://sta4ever.github.io/2014/12/08/接口操作时间统计/">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="sTa4ever 博客">
+<meta property="og:url" content="http://sta4ever.github.io/tags/gdb/">
 <meta property="og:site_name" content="sTa4ever 博客">
-<meta property="og:description" content="关于服务器接口访问的操作时间简单分析，通过awk实现。
-$ cat server.log.20141201 | awk '{gsub(/[^0-9]/,'',$8);a[$3]+=$8;b[$3]+=1} END {for( i in a) {printf('%d\t%5.2f\t%s\n',b[i], a[i]/b[i],i) }}'">
+<meta property="og:description">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="接口操作时间统计">
-<meta name="twitter:description" content="关于服务器接口访问的操作时间简单分析，通过awk实现。
-$ cat server.log.20141201 | awk '{gsub(/[^0-9]/,'',$8);a[$3]+=$8;b[$3]+=1} END {for( i in a) {printf('%d\t%5.2f\t%s\n',b[i], a[i]/b[i],i) }}'">
+<meta name="twitter:title" content="sTa4ever 博客">
+<meta name="twitter:description">
 
   
     <link rel="alternative" href="/atom.xml" title="sTa4ever 博客" type="application/atom+xml">
@@ -62,10 +59,12 @@ $ cat server.log.20141201 | awk '{gsub(/[^0-9]/,'',$8);a[$3]+=$8;b[$3]+=1} END {
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-接口操作时间统计" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main">
+  
+    <article id="post-gdb调试php" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/12/08/接口操作时间统计/" class="article-date">
-  <time datetime="2014-12-08T08:08:42.000Z" itemprop="datePublished">Dec 8 2014</time>
+    <a href="/2014/12/18/gdb调试php/" class="article-date">
+  <time datetime="2014-12-18T10:17:17.000Z" itemprop="datePublished">Dec 18 2014</time>
 </a>
     
   </div>
@@ -75,8 +74,8 @@ $ cat server.log.20141201 | awk '{gsub(/[^0-9]/,'',$8);a[$3]+=$8;b[$3]+=1} END {
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      接口操作时间统计
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/12/18/gdb调试php/">gdb调试php</a>
     </h1>
   
 
@@ -84,38 +83,40 @@ $ cat server.log.20141201 | awk '{gsub(/[^0-9]/,'',$8);a[$3]+=$8;b[$3]+=1} END {
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>关于服务器接口访问的操作时间简单分析，通过awk实现。</p>
-<pre><code>$ cat server.log.<span class="number">20141201</span> | awk '{gsub(/[^<span class="number">0</span>-<span class="number">9</span>]/,<span class="string">""</span>,$<span class="number">8</span>);a[$<span class="number">3</span>]+=$<span class="number">8</span>;b[$<span class="number">3</span>]+=<span class="number">1</span>} <span class="type">END</span> {<span class="keyword">for</span>( i <span class="keyword">in</span> a) {printf(<span class="string">"%d\t%5.2f\t%s\n"</span>,b[i], a[i]/b[i],i) }}'
-</code></pre>
+        <p>php进程进入死循环，php出现core文件等，是业务场景中偶尔会出现的问题。如何快速有效定位到问题所在，是我们解决问题的关键。用gdb对其进行调试，是个非常不错的手段。</p>
+<h3 id="调试死循环">调试死循环</h3>
+<p>如果php进程长期处于R状态，那么可能是进入了死循环，可通过下面示例分析：</p>
+<pre><code>gdb -p pid      <span class="comment">// pid为进程id</span>
+<span class="keyword">source</span> gdbinit  <span class="comment">// gdbinit是php自带的一个工具</span>
+bt              <span class="comment">// 打印堆栈信息</span>
+zbacktrace      <span class="comment">// 代码执行过程</span>
+printzv core_globals  
+printzv sapi_globals
+</code></pre><h3 id="调试core文件">调试core文件</h3>
+<p>线上出现core文件是一个比较严重的问题，用gdb来分析core文件是个不错的选择。调试示例如下：</p>
+<pre><code>gdb php -c core.222 // core.222是一个core文件
+source gdbinit
+bt 
+p <span class="keyword">*</span><span class="keyword">*</span>
+zbacktrace
+</code></pre><p>如果手动生成core文件，可能需要设置core文件大小不受限制，linux系统下命令：ulimit -c unlimited</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://sta4ever.github.io/2014/12/08/接口操作时间统计/" data-id="lp4cij2c10j04d08" class="article-share-link">Share</a>
+      <a data-url="http://sta4ever.github.io/2014/12/18/gdb调试php/" data-id="t0eltuq6idat8612" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日志分析/">日志分析</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gdb/">gdb</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
 
     </footer>
   </div>
   
-    
-<nav id="article-nav">
-  
-    <a href="/2014/12/08/mysql与mongo比对/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          mysql与mongo比对
-        
-      </div>
-    </a>
-  
-  
-</nav>
-
-  
 </article>
 
+
+  
+  
 </section>
         
       </div>
