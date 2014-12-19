@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: ide | sTa4ever 博客</title>
+  <title>Archives: 2014/12 | sTa4ever 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="sTa4ever 博客">
-<meta property="og:url" content="http://sta4ever.github.io/tags/ide/">
+<meta property="og:url" content="http://sta4ever.github.io/archives/2014/12/page/2/">
 <meta property="og:site_name" content="sTa4ever 博客">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -175,15 +175,15 @@
 </nav>
       
   
-    <article id="post-NetBeans缓存更新" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-接口操作时间统计" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/12/13/NetBeans缓存更新/" class="article-date">
-  	<time datetime="2014-12-13T04:43:45.000Z" itemprop="datePublished">Dec 13 2014</time>
+      <a href="/2014/12/08/接口操作时间统计/" class="article-date">
+  	<time datetime="2014-12-08T08:08:42.000Z" itemprop="datePublished">Dec 8 2014</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NetBeans/">NetBeans</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ide/">ide</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日志分析/">日志分析</a></li></ul>
 
     </div>
   
@@ -196,7 +196,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/13/NetBeans缓存更新/">NetBeans缓存更新</a>
+      <a class="article-title" href="/2014/12/08/接口操作时间统计/">接口操作时间统计</a>
     </h1>
   
 
@@ -204,10 +204,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>更新NetBeans后，ide的提示经常出错，通过更新ide缓存即可解决该问题。更新方式吗，那就是暴力删除了:)，如果怕删除太危险，可以移到备份。<br>NetBeans的缓存地址如下：</p>
-<pre><code>mac     /Users/&lt;username&gt;/Library/Caches/NetBeans/xxx/
-windows C:<span class="command">\Users</span><span class="command">\&lt;</span>username&gt;<span class="command">\AppData</span><span class="command">\Local</span><span class="command">\NetBeans</span><span class="command">\Cache</span><span class="command">\xxx</span><span class="command">\
-</span>unix    /home/&lt;username&gt;/.cache/netbeans/xxx/
+        <p>关于服务器接口访问的操作时间简单分析，通过awk实现。</p>
+<pre><code>$ cat server.log.<span class="number">20141201</span> | awk '{gsub(/[^<span class="number">0</span>-<span class="number">9</span>]/,<span class="string">""</span>,$<span class="number">8</span>);a[$<span class="number">3</span>]+=$<span class="number">8</span>;b[$<span class="number">3</span>]+=<span class="number">1</span>} <span class="type">END</span> {<span class="keyword">for</span>( i <span class="keyword">in</span> a) {printf(<span class="string">"%d\t%5.2f\t%s\n"</span>,b[i], a[i]/b[i],i) }}'
 </code></pre>
       
     </div>
@@ -225,6 +223,10 @@ windows C:<span class="command">\Users</span><span class="command">\&lt;</span>u
 
 
   
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/2014/12/">&laquo; Prev</a><a class="page-number" href="/archives/2014/12/">1</a><span class="page-number current">2</span>
+    </nav>
   
 
       <footer id="footer">

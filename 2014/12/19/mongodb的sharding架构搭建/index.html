@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>mongodb的sharding架构搭建 | sTa4ever 博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="sharding是一种将海量数据水平扩展的集群系统,数据分表存储在sharding的各个节点上,使用者通过简单的配置就可以很方便地构建一个分布式mongodb集群. sharding是数据库水平扩展(横向扩展或向外扩展)的解决方案,主要目的是突破单个数据库服务的I/O能力限制,最终解决数据库扩展性问题.sharding也有其弊端,比如处理事务的应用就会非常复杂.对于跨DB的事务来说,更是难保证完整">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mongodb的sharding架构搭建">
+<meta property="og:url" content="http://sta4ever.github.io/2014/12/19/mongodb的sharding架构搭建/">
+<meta property="og:site_name" content="sTa4ever 博客">
+<meta property="og:description" content="sharding是一种将海量数据水平扩展的集群系统,数据分表存储在sharding的各个节点上,使用者通过简单的配置就可以很方便地构建一个分布式mongodb集群. sharding是数据库水平扩展(横向扩展或向外扩展)的解决方案,主要目的是突破单个数据库服务的I/O能力限制,最终解决数据库扩展性问题.sharding也有其弊端,比如处理事务的应用就会非常复杂.对于跨DB的事务来说,更是难保证完整">
+<meta property="og:image" content="/img/mongo_sharding.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mongodb的sharding架构搭建">
+<meta name="twitter:description" content="sharding是一种将海量数据水平扩展的集群系统,数据分表存储在sharding的各个节点上,使用者通过简单的配置就可以很方便地构建一个分布式mongodb集群. sharding是数据库水平扩展(横向扩展或向外扩展)的解决方案,主要目的是突破单个数据库服务的I/O能力限制,最终解决数据库扩展性问题.sharding也有其弊端,比如处理事务的应用就会非常复杂.对于跨DB的事务来说,更是难保证完整">
+
+  
+    <link rel="alternative" href="/atom.xml" title="sTa4ever 博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<div class="profilepic">
+			<img src="/img/head.jpg">
+		</div>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">sTa4ever</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+                        <div class="bshare-custom"><a title="分享到QQ空间" class="bshare-qzone"></a><a title="分享到新浪微博" class="bshare-sinaminiblog"></a><a title="分享到人人网" class="bshare-renren"></a><a title="分享到腾讯微博" class="bshare-qqmb"></a><a title="分享到网易微博" class="bshare-neteasemb"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a><span class="BSHARE_COUNT bshare-share-count">0</span></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/button.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script><a class="bshareDiv" onclick="javascript:return false;"></a><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud">
+						<a href="/tags/NetBeans/" style="font-size: 10.00px;">NetBeans</a><a href="/tags/game/" style="font-size: 10.00px;">game</a><a href="/tags/gdb/" style="font-size: 10.00px;">gdb</a><a href="/tags/http/" style="font-size: 10.00px;">http</a><a href="/tags/ide/" style="font-size: 10.00px;">ide</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mongo/" style="font-size: 10.00px;">mongo</a><a href="/tags/mongodb/" style="font-size: 10.00px;">mongodb</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/php/" style="font-size: 20.00px;">php</a><a href="/tags/rank/" style="font-size: 10.00px;">rank</a><a href="/tags/redis/" style="font-size: 10.00px;">redis</a><a href="/tags/sharding/" style="font-size: 10.00px;">sharding</a><a href="/tags/sign/" style="font-size: 10.00px;">sign</a><a href="/tags/token/" style="font-size: 10.00px;">token</a><a href="/tags/加密/" style="font-size: 10.00px;">加密</a><a href="/tags/日志分析/" style="font-size: 10.00px;">日志分析</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay"></div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="/img/head.jpg">
+			</div>
+
+			<hgroup>
+			  <h1 class="header-author"><a href="/">sTa4ever</a></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <article id="post-mongodb的sharding架构搭建" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/12/19/mongodb的sharding架构搭建/" class="article-date">
+  	<time datetime="2014-12-19T03:07:45.000Z" itemprop="datePublished">Dec 19 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongodb/">mongodb</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sharding/">sharding</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      mongodb的sharding架构搭建
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>sharding是一种将海量数据水平扩展的集群系统,数据分表存储在sharding的各个节点上,使用者通过简单的配置就可以很方便地构建一个分布式mongodb集群. sharding是数据库水平扩展(横向扩展或向外扩展)的解决方案,主要目的是突破单个数据库服务的I/O能力限制,最终解决数据库扩展性问题.sharding也有其弊端,比如处理事务的应用就会非常复杂.对于跨DB的事务来说,更是难保证完整性.</p>
+<h3 id="sharding的架构">sharding的架构</h3>
+<p>构建一个mongodb sharding集群主要有下面3个角色:shard服务器（Shard Server），配置服务器(config Server)，路由进程（Route Process）。<br><b>Shard服务器</b><br>shard服务器即存储实际数据的分片,每个shard可以是一个mongod实例,也可以是一组mongod实例构成的Replica Sets.为了实现每个Shard内部的故障自动转换,MongoDB官方建议每个shard为一组Replica Sets.<br><b>配置服务器</b><br>Shard Key是帮助将一个collection分布在不同shard上面。Shard Key一经确认，尽量不要修改，不然容易出错。<br>配置服务器一般包含下面信息：</p>
+<ul>
+<li>每个shard节点的配置信息</li>
+<li>每个chunk的shard key范围</li>
+<li>chunk在各shard的分布情况</li>
+<li>集群db与colletion的配置信息</li>
+</ul>
+<p><b>路由进程</b><br>即mongos，可以起在客户端上，即每个端启动一个mongos，也可启动在服务器上面。它是个前端路由，客户端由此接入，首先询问配置服务器在哪个shard上操作数据，最后将数据返回客户端。客户端仅需跟路由进程（mongos）打交道，不必关心真正操作落在哪个shard上。<br>mongodb的sharding架构如下：<br><img src="/img/mongo_sharding.png" alt="mongodb的sharding架构"></p>
+<h3 id="构架shard集群">构架shard集群</h3>
+<p>复制集一般由一系列服务器组成，一个服务器做主库，其他服务器做从库。测试时，可以在一台服务器上面起多个实例来模拟生产环境。<br>数据存放路径 /data/user/mongo/data/shard/sv*<br>日志存放路径 /data/user/mongo/logs/shard/sv*.log</p>
+<p><b>启动Shard Server</b></p>
+<pre><code>mongod --shardsvr --port <span class="number">10001</span> --dbpath=<span class="regexp">/data/user</span><span class="regexp">/mongo/data</span><span class="regexp">/shard/sv</span><span class="number">0</span> --logpath=<span class="regexp">/data/user</span><span class="regexp">/mongo/logs</span><span class="regexp">/shard/sv</span><span class="number">0</span>.log --directoryperdb
+mongod --shardsvr --port <span class="number">10002</span> --dbpath=<span class="regexp">/data/user</span><span class="regexp">/mongo/data</span><span class="regexp">/shard/sv</span>1 --logpath=<span class="regexp">/data/user</span><span class="regexp">/mongo/logs</span><span class="regexp">/shard/sv</span>1.log --directoryperdb
+</code></pre><p><b>启动config Server</b></p>
+<pre><code>mongod --configsvr --port <span class="number">8000</span> --dbpath=<span class="regexp">/var/user</span><span class="regexp">/mongo/data</span><span class="regexp">/shard/config</span> --logpath=<span class="regexp">/data/user</span><span class="regexp">/mongo/logs</span><span class="regexp">/shard/config</span>.log --directoryperdb
+</code></pre><p><b>启动路由(mongos)</b></p>
+<pre><code><span class="comment">mongos</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">port</span> <span class="comment">6000</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">configdb</span> <span class="comment">localhost:8000</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">logpath=/data/user/mongo/logs/shard/route</span><span class="string">.</span><span class="comment">log</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">chunkSize</span> <span class="comment">1</span>
+</code></pre><p>chunkSize用来指定chunk大小，单位MB，默认200.<br><b>配置Sharding</b><br>使用客户端登陆路由控制添加shard</p>
+<pre><code>db<span class="class">.runCommand</span>({addshard<span class="value">: <span class="string">'localhost:10001'</span>}) // 添加本地端口<span class="number">10001</span>的shard server
+db.<span class="function">runCommand</span>({addshard: <span class="string">'localhost:10002'</span>})
+db.<span class="function">runCommand</span>({shardcollection: <span class="string">'test.user'</span>, key:{_id: <span class="number">1</span>}}) // 将test的user表分片，shard key为_id
+<span class="function">for</span>(var i=<span class="number">1</span>;</span> <span class="tag">i</span>&lt;100000; <span class="tag">i</span>++) db<span class="class">.user</span><span class="class">.insert</span>({name<span class="value">:<span class="string">"user"</span>+i, age:i, email:<span class="string">"guanhua2011@gmail.com"</span> })
+db.user.<span class="function">stats</span>()</span>
+</code></pre><p><b>新增shard</b><br>    mongod —shardsvr —port 10003 —dbpath=/data/user/mongo/data/shard/sv2 —logpath=/data/user/mongo/logs/sv2.log</p>
+<pre><code>db.runCommand({addshard:<span class="string">'localhost:10003'</span>}) <span class="comment">// 增加shard</span>
+</code></pre><p><b>查看Sharding信息</b></p>
+<pre><code><span class="function"><span class="title">printShardingStatus</span><span class="params">()</span></span>
+</code></pre><p><b>移除Shard Server</b></p>
+<pre><code>db.runCommand(<span class="string">'removeshard'</span>:<span class="string">'localhost:10001'</span>) <span class="comment">// 移除shard</span>
+db.runCommand(<span class="string">'removeshard'</span>:<span class="string">'localhost:10001'</span>) <span class="comment">// 多次调用查看移除状态</span>
+</code></pre><p>移除shard的三种状态</p>
+<ul>
+<li>started 移除动作才开始</li>
+<li>ongoing 移除进行中</li>
+<li>completed 移除完成</li>
+</ul>
+<p><b>列出Shard Server</b></p>
+<pre><code><span class="tag">db</span><span class="class">.runCommand</span>(<span class="rules">{<span class="rule"><span class="attribute">listshards</span>:<span class="value"> <span class="number">1</span></span></span></span>})
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2014/12/18/gdb调试php/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">gdb调试php</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="mongodb的sharding架构搭建" data-title="mongodb的sharding架构搭建" data-url="http://sta4ever.github.io/2014/12/19/mongodb的sharding架构搭建/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2014 sTa4ever
+    	</div>
+      	<div class="footer-right">
+      	</div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+  <script src="/js/main.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>
