@@ -3,26 +3,29 @@
 <head>
   <meta charset="utf-8">
   
-  <title>redis有序集根据key排序问题 | sTa4ever 博客</title>
+  <title>任务系统 | sTa4ever 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="redis 有序集达不到预期排行的问题
-游戏中经常用redis的有序集做排行，排行的key采用uid，排序积分用游戏数值。不同玩家，游戏数值经常相同，理想情况下，应该是早达到该数值的玩家排行在前。由于redis有序集具有排行积分相同的，按照key进行排序的特性，我们的排序总是达不到预期的结果。比如下面一个示例:
-redis 127.0.0.1:53000&gt; del test
-(integer">
+  <meta name="description" content="游戏的任务系统是一个常见的系统，游戏任务一般有下面几种：日常任务、主线任务、养成任务、目标任务。
+日常任务
+每天都会刷新的任务，可重复出现。玩家一般完成某些操作来完成此类任务。比如，进行10次主线战斗。该类任务一般通过记录用户的操作来完成，有时，该类任务同时要收集参数。比如，购买体力丹1个等。
+主线任务
+该类任务在整个游戏周期只能出现一次，玩家也是通过完成某些操作来完成此类任务。比如，通关第十章第">
 <meta property="og:type" content="article">
-<meta property="og:title" content="redis有序集根据key排序问题">
-<meta property="og:url" content="http://sta4ever.github.io/2014/12/12/redis有序集根据key排序问题/">
+<meta property="og:title" content="任务系统">
+<meta property="og:url" content="http://sta4ever.github.io/2015/01/04/任务系统/">
 <meta property="og:site_name" content="sTa4ever 博客">
-<meta property="og:description" content="redis 有序集达不到预期排行的问题
-游戏中经常用redis的有序集做排行，排行的key采用uid，排序积分用游戏数值。不同玩家，游戏数值经常相同，理想情况下，应该是早达到该数值的玩家排行在前。由于redis有序集具有排行积分相同的，按照key进行排序的特性，我们的排序总是达不到预期的结果。比如下面一个示例:
-redis 127.0.0.1:53000&gt; del test
-(integer">
+<meta property="og:description" content="游戏的任务系统是一个常见的系统，游戏任务一般有下面几种：日常任务、主线任务、养成任务、目标任务。
+日常任务
+每天都会刷新的任务，可重复出现。玩家一般完成某些操作来完成此类任务。比如，进行10次主线战斗。该类任务一般通过记录用户的操作来完成，有时，该类任务同时要收集参数。比如，购买体力丹1个等。
+主线任务
+该类任务在整个游戏周期只能出现一次，玩家也是通过完成某些操作来完成此类任务。比如，通关第十章第">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="redis有序集根据key排序问题">
-<meta name="twitter:description" content="redis 有序集达不到预期排行的问题
-游戏中经常用redis的有序集做排行，排行的key采用uid，排序积分用游戏数值。不同玩家，游戏数值经常相同，理想情况下，应该是早达到该数值的玩家排行在前。由于redis有序集具有排行积分相同的，按照key进行排序的特性，我们的排序总是达不到预期的结果。比如下面一个示例:
-redis 127.0.0.1:53000&gt; del test
-(integer">
+<meta name="twitter:title" content="任务系统">
+<meta name="twitter:description" content="游戏的任务系统是一个常见的系统，游戏任务一般有下面几种：日常任务、主线任务、养成任务、目标任务。
+日常任务
+每天都会刷新的任务，可重复出现。玩家一般完成某些操作来完成此类任务。比如，进行10次主线战斗。该类任务一般通过记录用户的操作来完成，有时，该类任务同时要收集参数。比如，购买体力丹1个等。
+主线任务
+该类任务在整个游戏周期只能出现一次，玩家也是通过完成某些操作来完成此类任务。比如，通关第十章第">
 
   
     <link rel="alternative" href="/atom.xml" title="sTa4ever 博客" type="application/atom+xml">
@@ -178,15 +181,15 @@ redis 127.0.0.1:53000&gt; del test
 		</header>				
 	</div>
 </nav>
-      <article id="post-redis有序集根据key排序问题" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-任务系统" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/12/12/redis有序集根据key排序问题/" class="article-date">
-  	<time datetime="2014-12-12T03:17:21.000Z" itemprop="datePublished">Dec 12 2014</time>
+      <a href="/2015/01/04/任务系统/" class="article-date">
+  	<time datetime="2015-01-04T02:08:07.000Z" itemprop="datePublished">Jan 4 2015</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/game/">game</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rank/">rank</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/游戏/">游戏</a></li></ul>
 
     </div>
   
@@ -199,7 +202,7 @@ redis 127.0.0.1:53000&gt; del test
         
   
     <h1 class="article-title" itemprop="name">
-      redis有序集根据key排序问题
+      任务系统
     </h1>
   
 
@@ -207,40 +210,15 @@ redis 127.0.0.1:53000&gt; del test
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="redis_有序集达不到预期排行的问题">redis 有序集达不到预期排行的问题</h3>
-<p>游戏中经常用redis的有序集做排行，排行的key采用uid，排序积分用游戏数值。不同玩家，游戏数值经常相同，理想情况下，应该是早达到该数值的玩家排行在前。<br>由于redis有序集具有排行积分相同的，按照key进行排序的特性，我们的排序总是达不到预期的结果。<br>比如下面一个示例:</p>
-<pre><code><span class="input"><span class="prompt">redis 127.0.0.1:53000&gt;</span> del test</span>
-<span class="input"><span class="prompt">(integer) 1
-redis 127.0.0.1:53000&gt;</span> zadd test <span class="number">10</span> <span class="number">1</span></span>
-<span class="input"><span class="prompt">(integer) 1
-redis 127.0.0.1:53000&gt;</span> zadd test <span class="number">10</span> <span class="number">3</span></span>
-<span class="input"><span class="prompt">(integer) 1
-redis 127.0.0.1:53000&gt;</span> zadd test <span class="number">10</span> <span class="number">2</span></span>
-<span class="input"><span class="prompt">(integer) 1
-redis 127.0.0.1:53000&gt;</span> zrange test <span class="number">0</span> -<span class="number">1</span> withscores</span>
-<span class="number">1</span>) <span class="string">"1"</span>
-<span class="number">2</span>) <span class="string">"10"</span>
-<span class="number">3</span>) <span class="string">"2"</span>
-<span class="number">4</span>) <span class="string">"10"</span>
-<span class="number">5</span>) <span class="string">"3"</span>
-<span class="number">6</span>) <span class="string">"10"</span>
-</code></pre><p>其实我们期望的排序应该是1、3、2。</p>
-<h3 id="排行积分中增加时间解决该问题">排行积分中增加时间解决该问题</h3>
-<p>我们期望越早进入排行的玩家排行在前，如果用redis的有序集做排行，仅用游戏数值做排行积分无法满足我们的需求，考虑到时间因素，因而想到将时间加入的排行积分也就水到渠成。<br>具体的算法以下面的周排行为例：</p>
-<pre><code><span class="function"><span class="keyword">function</span> <span class="title">getRedisPoint</span><span class="params">(<span class="variable">$point</span>)</span>
-</span>{
-    <span class="variable">$_t</span>    = time();
-    <span class="variable">$index</span> = date(<span class="string">'N'</span>, <span class="variable">$_t</span>);
-    <span class="variable">$begin</span> = strtotime(date(<span class="string">'Y-m-d'</span>, <span class="variable">$_t</span>));
-    <span class="variable">$min</span>   = (<span class="variable">$index</span> - <span class="number">1</span>) * <span class="number">1440</span> + ceil((SVR_NOW - <span class="variable">$begin</span>) / <span class="number">60</span>);
-    <span class="keyword">return</span> <span class="variable">$point</span> * <span class="number">20000</span> - <span class="variable">$min</span>;
-}
-</code></pre><p>上例为计算redis周排行的一个示例，1440是一天的分钟数（60*24），一周总共10080，为计算方便采用20000，当然可以选择大于10080的任意数值。<br>计算真正积分的算法如下：</p>
-<pre><code><span class="function"><span class="keyword">function</span> <span class="title">getRealPoint</span><span class="params">(<span class="variable">$point</span>)</span>
-</span>{
-    <span class="keyword">return</span> <span class="variable">$point</span> &gt; <span class="number">20000</span> ? ceil(<span class="variable">$point</span> / <span class="number">20000</span>) : <span class="variable">$point</span>;
-}
-</code></pre><p>其他的排行也类似，不过是选取不同的常数。</p>
+        <p>游戏的任务系统是一个常见的系统，游戏任务一般有下面几种：日常任务、主线任务、养成任务、目标任务。</p>
+<h3 id="日常任务">日常任务</h3>
+<p>每天都会刷新的任务，可重复出现。玩家一般完成某些操作来完成此类任务。比如，进行10次主线战斗。<br>该类任务一般通过记录用户的操作来完成，有时，该类任务同时要收集参数。比如，购买体力丹1个等。</p>
+<h3 id="主线任务">主线任务</h3>
+<p>该类任务在整个游戏周期只能出现一次，玩家也是通过完成某些操作来完成此类任务。比如，通关第十章第十个关卡。</p>
+<h3 id="养成任务">养成任务</h3>
+<p>该类任务在整个游戏周期一般出现一次，通过分析玩家的数据状态来完成，玩家主动提交。比如，玩家等级达到10级。该类任务的处理一般没有规律，需要针对不同条件进行不同的处理逻辑。</p>
+<h3 id="目标任务">目标任务</h3>
+<p>该类任务通常伴随活动一起出现，比如新用户10日目标等。该类任务一般由几个任务共同组成，当全部任务都完成时，才会达到目标。该任务的完成条件包含上面两种：用户行为、用户状态。该类任务一般针对不同条件有不同的处理逻辑。<br>此外，该类任务也包含时间的判断。比如：开服第二天，1）玩家等级达到10级；2）通关第二章第二个关卡。</p>
 
       
     </div>
@@ -253,18 +231,9 @@ redis 127.0.0.1:53000&gt;</span> zrange test <span class="number">0</span> -<spa
     
 <nav id="article-nav">
   
-    <a href="/2014/12/13/NetBeans缓存更新/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">&lt;</strong>
-      <div class="article-nav-title">
-        
-          NetBeans缓存更新
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/12/11/iTerm-Term-vim配色方案/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">iTerm/Term/vim配色方案</div>
+    <a href="/2014/12/19/mongodb的sharding架构搭建/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">mongodb的sharding架构搭建</div>
       <strong class="article-nav-caption">&gt;</strong>
     </a>
   
@@ -293,7 +262,7 @@ redis 127.0.0.1:53000&gt;</span> zrange test <span class="number">0</span> -<spa
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="redis有序集根据key排序问题" data-title="redis有序集根据key排序问题" data-url="http://sta4ever.github.io/2014/12/12/redis有序集根据key排序问题/"></div>
+	<div class="ds-thread" data-thread-key="任务系统" data-title="任务系统" data-url="http://sta4ever.github.io/2015/01/04/任务系统/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
