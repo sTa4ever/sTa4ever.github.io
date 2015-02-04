@@ -403,8 +403,9 @@ DELETE FROM users <span class="keyword">WHERE</span> z<span class="subst">=</spa
     <div class="article-entry" itemprop="articleBody">
       
         <p>关于服务器接口访问的操作时间简单分析，通过awk实现。</p>
-<pre><code>$ cat server.log.<span class="number">20141201</span> | awk '{gsub(/[^<span class="number">0</span>-<span class="number">9</span>]/,<span class="string">""</span>,$<span class="number">8</span>);a[$<span class="number">3</span>]+=$<span class="number">8</span>;b[$<span class="number">3</span>]+=<span class="number">1</span>} <span class="type">END</span> {<span class="keyword">for</span>( i <span class="keyword">in</span> a) {printf(<span class="string">"%d\t%5.2f\t%s\n"</span>,b[i], a[i]/b[i],i) }}'
-</code></pre>
+<pre><code>cat server.log.<span class="number">20141201</span> | awk '{gsub(/[^<span class="number">0</span>-<span class="number">9</span>]/,<span class="string">""</span>,$<span class="number">8</span>);a[$<span class="number">3</span>]+=$<span class="number">8</span>;b[$<span class="number">3</span>]+=<span class="number">1</span>} <span class="type">END</span> {<span class="keyword">for</span>( i <span class="keyword">in</span> a) {printf(<span class="string">"%d\t%5.2f\t%s\n"</span>,b[i], a[i]/b[i],i) }}'
+</code></pre><p>获取某个操作包好某项信息的统计信息<br>    cat server.log.20141201 | awk ‘{i=index($3,”actionID”);if(i&gt;0){s=substr($3,i+11,1);a[s]+=1;}}END{for(ii in a) printf(“%s\t%d\n”,ii, a[ii]);}’</p>
+
       
     </div>
     <footer class="article-footer">
