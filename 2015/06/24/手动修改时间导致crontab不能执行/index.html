@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2014 | sTa4ever 博客</title>
+  <title>手动修改时间导致crontab不能执行 | sTa4ever 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="sTa4ever 博客">
-<meta property="og:url" content="http://sta4ever.github.io/archives/2014/page/2/">
+  <meta name="description" content="重启crontab    sudo /sbin/service crond restart">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手动修改时间导致crontab不能执行">
+<meta property="og:url" content="http://sta4ever.github.io/2015/06/24/手动修改时间导致crontab不能执行/">
 <meta property="og:site_name" content="sTa4ever 博客">
-<meta property="og:description">
+<meta property="og:description" content="重启crontab    sudo /sbin/service crond restart">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sTa4ever 博客">
-<meta name="twitter:description">
+<meta name="twitter:title" content="手动修改时间导致crontab不能执行">
+<meta name="twitter:description" content="重启crontab    sudo /sbin/service crond restart">
 
   
     <link rel="alternative" href="/atom.xml" title="sTa4ever 博客" type="application/atom+xml">
@@ -169,18 +169,14 @@
 		</header>				
 	</div>
 </nav>
-      
-  
-    <article id="post-接口操作时间统计" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-手动修改时间导致crontab不能执行" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/12/08/接口操作时间统计/" class="article-date">
-  	<time datetime="2014-12-08T08:08:42.000Z" itemprop="datePublished">Dec 8 2014</time>
+      <a href="/2015/06/24/手动修改时间导致crontab不能执行/" class="article-date">
+  	<time datetime="2015-06-24T11:36:23.000Z" itemprop="datePublished">Jun 24 2015</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日志分析/">日志分析</a></li></ul>
-
     </div>
   
   <div class="article-inner">
@@ -191,8 +187,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/08/接口操作时间统计/">接口操作时间统计</a>
+    <h1 class="article-title" itemprop="name">
+      手动修改时间导致crontab不能执行
     </h1>
   
 
@@ -200,11 +196,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>关于服务器接口访问的操作时间简单分析，通过awk实现。</p>
-<pre><code>cat server.log.<span class="number">20141201</span> | awk '{gsub(/[^<span class="number">0</span>-<span class="number">9</span>]/,<span class="string">""</span>,$<span class="number">8</span>);a[$<span class="number">3</span>]+=$<span class="number">8</span>;b[$<span class="number">3</span>]+=<span class="number">1</span>} <span class="type">END</span> {<span class="keyword">for</span>( i <span class="keyword">in</span> a) {printf(<span class="string">"%d\t%5.2f\t%s\n"</span>,b[i], a[i]/b[i],i) }}'
-</code></pre><p>获取某个操作包好某项信息的统计信息</p>
-<pre><code>cat server.log.<span class="number">20141201</span> | awk '{i=index($<span class="number">3</span>,<span class="string">"actionID"</span>);<span class="keyword">if</span>(i&gt;<span class="number">0</span>){s=substr($<span class="number">3</span>,i+<span class="number">11</span>,<span class="number">1</span>);a[s]+=<span class="number">1</span>;}}<span class="type">END</span>{<span class="keyword">for</span>(ii <span class="keyword">in</span> a) printf(<span class="string">"%s\t%d\n"</span>,ii, a[ii]);}'
-</code></pre>
+        <p>重启crontab<br>    sudo /sbin/service crond restart</p>
+
       
     </div>
     <footer class="article-footer">
@@ -213,19 +206,59 @@
     </footer>
   </div>
   
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/01/13/2014年终总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">2014年终总结</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
 </article>
 
 
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
 
 
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="手动修改时间导致crontab不能执行" data-title="手动修改时间导致crontab不能执行" data-url="http://sta4ever.github.io/2015/06/24/手动修改时间导致crontab不能执行/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"1f889335e8d276a6c4e70f296efa4509"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-  
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2014/">&laquo; Prev</a><a class="page-number" href="/archives/2014/">1</a><span class="page-number current">2</span>
-    </nav>
-  
+
+
 
       <footer id="footer">
   <div class="outer">

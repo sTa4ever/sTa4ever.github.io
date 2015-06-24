@@ -171,6 +171,51 @@
 </nav>
       
   
+    <article id="post-手动修改时间导致crontab不能执行" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/06/24/手动修改时间导致crontab不能执行/" class="article-date">
+  	<time datetime="2015-06-24T11:36:23.000Z" itemprop="datePublished">Jun 24 2015</time>
+</a>
+      
+      
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/06/24/手动修改时间导致crontab不能执行/">手动修改时间导致crontab不能执行</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>重启crontab<br>    sudo /sbin/service crond restart</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
     <article id="post-2014年终总结" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -821,71 +866,6 @@ redis 127.0.0.1:53000&gt;</span> zrange test <span class="number">0</span> -<spa
 <h3 id="Terminal/iTerm2">Terminal/iTerm2</h3>
 <p>Mac OS X 自带的 Terminal 和免费的 iTerm2 都是很好用的工具，iTerm2 可以切分成多窗口，更方便一些。<br>如果你使用的是 Terminal 的话，在 solarized/osx-terminal.app-colors-solarized 下双击 Solarized Dark ansi.terminal 和 Solarized Light ansi.terminal 就会自动导入两种配色方案 Dark 和 Light 到 Terminal.app 里。<br>如果你使用的是 iTerm2 的话，到 solarized/iterm2-colors-solarized 下双击 Solarized Dark.itermcolors 和 Solarized Light.itermcolors 两个文件就可以把配置文件导入到 iTerm 里。</p>
 
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-top查看各cpu信息" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/12/10/top查看各cpu信息/" class="article-date">
-  	<time datetime="2014-12-10T04:48:39.000Z" itemprop="datePublished">Dec 10 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/10/top查看各cpu信息/">top查看各cpu信息</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>大家都知道linux下，top可以查看服务器运行状况，但是cpu相关的信息是总体的，如果想看各cpu的详细运行情况，按下字母“1”即可.是我太弱了吗，才知道:)。<br>linux下面top执行</p>
-<pre><code>top - <span class="number">12</span>:<span class="number">50</span>:<span class="number">25</span> up <span class="number">21</span> days,  <span class="number">1</span>:<span class="number">10</span>,  <span class="number">1</span> user,  load average: <span class="number">0</span>.<span class="number">00</span>, <span class="number">0</span>.<span class="number">00</span>, <span class="number">0</span>.<span class="number">00</span>
-Tasks: <span class="number">290</span> total,   <span class="number">1</span> running, <span class="number">289</span> sleeping,   <span class="number">0</span> stopped,   <span class="number">0</span> zombie
-Cpu(<span class="keyword">s</span>):  <span class="number">0</span>.<span class="number">1</span><span class="variable">%us</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%sy</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%ni</span>, <span class="number">99.7</span><span class="variable">%id</span>,  <span class="number">0</span>.<span class="number">1</span><span class="variable">%wa</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%hi</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%si</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%st</span>
-Mem:   <span class="number">8184896</span>k total,  <span class="number">5344636</span>k used,  <span class="number">2840260</span>k free,   <span class="number">369928</span>k buffers
-Swap:        0k total,        0k used,        0k free,  <span class="number">3724040</span>k cached
-</code></pre><p>按下字母“1”后</p>
-<pre><code>top - <span class="number">12</span>:<span class="number">51</span>:<span class="number">15</span> up <span class="number">21</span> days,  <span class="number">1</span>:<span class="number">11</span>,  <span class="number">1</span> user,  load average: <span class="number">0</span>.<span class="number">00</span>, <span class="number">0</span>.<span class="number">00</span>, <span class="number">0</span>.<span class="number">00</span>
-Tasks: <span class="number">290</span> total,   <span class="number">1</span> running, <span class="number">289</span> sleeping,   <span class="number">0</span> stopped,   <span class="number">0</span> zombie
-Cpu<span class="number">0</span>  :  <span class="number">1.1</span><span class="variable">%us</span>,  <span class="number">0</span>.<span class="number">2</span><span class="variable">%sy</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%ni</span>, <span class="number">98.0</span><span class="variable">%id</span>,  <span class="number">0</span>.<span class="number">2</span><span class="variable">%wa</span>,  <span class="number">0</span>.<span class="number">1</span><span class="variable">%hi</span>,  <span class="number">0</span>.<span class="number">3</span><span class="variable">%si</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%st</span>
-Cpu1  :  <span class="number">0</span>.<span class="number">0</span><span class="variable">%us</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%sy</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%ni</span>,<span class="number">100.0</span><span class="variable">%id</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%wa</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%hi</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%si</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%st</span>
-Cpu2  :  <span class="number">0</span>.<span class="number">0</span><span class="variable">%us</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%sy</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%ni</span>,<span class="number">100.0</span><span class="variable">%id</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%wa</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%hi</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%si</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%st</span>
-Cpu3  :  <span class="number">0</span>.<span class="number">0</span><span class="variable">%us</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%sy</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%ni</span>,<span class="number">100.0</span><span class="variable">%id</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%wa</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%hi</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%si</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%st</span>
-Cpu4  :  <span class="number">0</span>.<span class="number">1</span><span class="variable">%us</span>,  <span class="number">0</span>.<span class="number">2</span><span class="variable">%sy</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%ni</span>, <span class="number">99.7</span><span class="variable">%id</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%wa</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%hi</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%si</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%st</span>
-Cpu5  :  <span class="number">0</span>.<span class="number">0</span><span class="variable">%us</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%sy</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%ni</span>,<span class="number">100.0</span><span class="variable">%id</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%wa</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%hi</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%si</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%st</span>
-Cpu6  :  <span class="number">0</span>.<span class="number">0</span><span class="variable">%us</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%sy</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%ni</span>, <span class="number">99.9</span><span class="variable">%id</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%wa</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%hi</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%si</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%st</span>
-Cpu7  :  <span class="number">0</span>.<span class="number">0</span><span class="variable">%us</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%sy</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%ni</span>, <span class="number">99.9</span><span class="variable">%id</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%wa</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%hi</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%si</span>,  <span class="number">0</span>.<span class="number">0</span><span class="variable">%st</span>
-Mem:   <span class="number">8184896</span>k total,  <span class="number">5344876</span>k used,  <span class="number">2840020</span>k free,   <span class="number">369928</span>k buffers
-Swap:        0k total,        0k used,        0k free,  <span class="number">3724304</span>k cached
-</code></pre>
       
     </div>
     <footer class="article-footer">

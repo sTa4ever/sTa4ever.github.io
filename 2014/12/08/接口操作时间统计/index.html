@@ -7,19 +7,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="关于服务器接口访问的操作时间简单分析，通过awk实现。
 cat server.log.20141201 | awk '{gsub(/[^0-9]/,'',$8);a[$3]+=$8;b[$3]+=1} END {for( i in a) {printf('%d\t%5.2f\t%s\n',b[i], a[i]/b[i],i) }}'
-获取某个操作包好某项信息的统计信息    cat server.">
+获取某个操作包好某项信息的统计信息
+cat server.log">
 <meta property="og:type" content="article">
 <meta property="og:title" content="接口操作时间统计">
 <meta property="og:url" content="http://sta4ever.github.io/2014/12/08/接口操作时间统计/">
 <meta property="og:site_name" content="sTa4ever 博客">
 <meta property="og:description" content="关于服务器接口访问的操作时间简单分析，通过awk实现。
 cat server.log.20141201 | awk '{gsub(/[^0-9]/,'',$8);a[$3]+=$8;b[$3]+=1} END {for( i in a) {printf('%d\t%5.2f\t%s\n',b[i], a[i]/b[i],i) }}'
-获取某个操作包好某项信息的统计信息    cat server.">
+获取某个操作包好某项信息的统计信息
+cat server.log">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="接口操作时间统计">
 <meta name="twitter:description" content="关于服务器接口访问的操作时间简单分析，通过awk实现。
 cat server.log.20141201 | awk '{gsub(/[^0-9]/,'',$8);a[$3]+=$8;b[$3]+=1} END {for( i in a) {printf('%d\t%5.2f\t%s\n',b[i], a[i]/b[i],i) }}'
-获取某个操作包好某项信息的统计信息    cat server.">
+获取某个操作包好某项信息的统计信息
+cat server.log">
 
   
     <link rel="alternative" href="/atom.xml" title="sTa4ever 博客" type="application/atom+xml">
@@ -206,8 +209,9 @@ cat server.log.20141201 | awk '{gsub(/[^0-9]/,'',$8);a[$3]+=$8;b[$3]+=1} END {fo
       
         <p>关于服务器接口访问的操作时间简单分析，通过awk实现。</p>
 <pre><code>cat server.log.<span class="number">20141201</span> | awk '{gsub(/[^<span class="number">0</span>-<span class="number">9</span>]/,<span class="string">""</span>,$<span class="number">8</span>);a[$<span class="number">3</span>]+=$<span class="number">8</span>;b[$<span class="number">3</span>]+=<span class="number">1</span>} <span class="type">END</span> {<span class="keyword">for</span>( i <span class="keyword">in</span> a) {printf(<span class="string">"%d\t%5.2f\t%s\n"</span>,b[i], a[i]/b[i],i) }}'
-</code></pre><p>获取某个操作包好某项信息的统计信息<br>    cat server.log.20141201 | awk ‘{i=index($3,”actionID”);if(i&gt;0){s=substr($3,i+11,1);a[s]+=1;}}END{for(ii in a) printf(“%s\t%d\n”,ii, a[ii]);}’</p>
-
+</code></pre><p>获取某个操作包好某项信息的统计信息</p>
+<pre><code>cat server.log.<span class="number">20141201</span> | awk '{i=index($<span class="number">3</span>,<span class="string">"actionID"</span>);<span class="keyword">if</span>(i&gt;<span class="number">0</span>){s=substr($<span class="number">3</span>,i+<span class="number">11</span>,<span class="number">1</span>);a[s]+=<span class="number">1</span>;}}<span class="type">END</span>{<span class="keyword">for</span>(ii <span class="keyword">in</span> a) printf(<span class="string">"%s\t%d\n"</span>,ii, a[ii]);}'
+</code></pre>
       
     </div>
     <footer class="article-footer">
