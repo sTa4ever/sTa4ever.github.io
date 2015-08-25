@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: ide | sTa4ever 博客</title>
+  <title>Tag: 游戏时间过滤 | sTa4ever 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="sTa4ever 博客">
-<meta property="og:url" content="http://sta4ever.github.io/tags/ide/">
+<meta property="og:url" content="http://sta4ever.github.io/tags/游戏时间过滤/">
 <meta property="og:site_name" content="sTa4ever 博客">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -171,15 +171,15 @@
 </nav>
       
   
-    <article id="post-NetBeans缓存更新" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-游戏时间通过修改时区被绕过" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/12/13/NetBeans缓存更新/" class="article-date">
-  	<time datetime="2014-12-13T04:43:45.000Z" itemprop="datePublished">Dec 13 2014</time>
+      <a href="/2015/08/25/游戏时间通过修改时区被绕过/" class="article-date">
+  	<time datetime="2015-08-25T03:49:26.000Z" itemprop="datePublished">Aug 25 2015</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NetBeans/">NetBeans</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ide/">ide</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/游戏时间过滤/">游戏时间过滤</a></li></ul>
 
     </div>
   
@@ -192,7 +192,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/13/NetBeans缓存更新/">NetBeans缓存更新</a>
+      <a class="article-title" href="/2015/08/25/游戏时间通过修改时区被绕过/">游戏时间通过修改时区被绕过</a>
     </h1>
   
 
@@ -200,11 +200,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>更新NetBeans后，ide的提示经常出错，通过更新ide缓存即可解决该问题。更新方式吗，那就是暴力删除了:)，如果怕删除太危险，可以移到备份。<br>NetBeans的缓存地址如下：</p>
-<pre><code>mac     /Users/&lt;username&gt;/Library/Caches/NetBeans/xxx/
-windows C:<span class="command">\Users</span><span class="command">\&lt;</span>username&gt;<span class="command">\AppData</span><span class="command">\Local</span><span class="command">\NetBeans</span><span class="command">\Cache</span><span class="command">\xxx</span><span class="command">\
-</span>unix    /home/&lt;username&gt;/.cache/netbeans/xxx/
-</code></pre>
+        <p>游戏中的某些玩法或者活动经常是定时的，一天中的某个时段或者某几天才可以玩。这种玩法的一个做法是，通过游戏端来控制游戏入口，只有在该时间段才会出现该入口。游戏端的时间一般是由服务器控制的，所以一般通过修改手机时间是无法显示游戏入口的。<br>但是，上述的方法有一个漏洞，当玩家修改手机时区时，服务器返回的时间戳是没有时区概念的，不同时区，时间存在差异，会导致设置时区（比如东9区）的玩家会提前进入游戏，达到某种领先优势的目的。<br>为解决上述问题，不仅游戏端进行时间过滤，服务器端也需要进行时间控制。即使玩家通过某些手段绕过游戏端的限制，请求达到服务器后，也不会得到正常处理。</p>
+
       
     </div>
     <footer class="article-footer">

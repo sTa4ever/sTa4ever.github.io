@@ -109,7 +109,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud">
-						<a href="/tags/2014/" style="font-size: 10.00px;">2014</a><a href="/tags/NetBeans/" style="font-size: 10.00px;">NetBeans</a><a href="/tags/game/" style="font-size: 10.00px;">game</a><a href="/tags/gdb/" style="font-size: 10.00px;">gdb</a><a href="/tags/http/" style="font-size: 10.00px;">http</a><a href="/tags/ide/" style="font-size: 10.00px;">ide</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mongodb/" style="font-size: 15.00px;">mongodb</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/php/" style="font-size: 20.00px;">php</a><a href="/tags/rank/" style="font-size: 10.00px;">rank</a><a href="/tags/redis/" style="font-size: 10.00px;">redis</a><a href="/tags/sharding/" style="font-size: 10.00px;">sharding</a><a href="/tags/sign/" style="font-size: 10.00px;">sign</a><a href="/tags/token/" style="font-size: 10.00px;">token</a><a href="/tags/加密/" style="font-size: 10.00px;">加密</a><a href="/tags/日志分析/" style="font-size: 10.00px;">日志分析</a><a href="/tags/游戏/" style="font-size: 10.00px;">游戏</a>
+						<a href="/tags/2014/" style="font-size: 10.00px;">2014</a><a href="/tags/NetBeans/" style="font-size: 10.00px;">NetBeans</a><a href="/tags/game/" style="font-size: 10.00px;">game</a><a href="/tags/gdb/" style="font-size: 10.00px;">gdb</a><a href="/tags/http/" style="font-size: 10.00px;">http</a><a href="/tags/ide/" style="font-size: 10.00px;">ide</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mongodb/" style="font-size: 15.00px;">mongodb</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/php/" style="font-size: 20.00px;">php</a><a href="/tags/rank/" style="font-size: 10.00px;">rank</a><a href="/tags/redis/" style="font-size: 10.00px;">redis</a><a href="/tags/sharding/" style="font-size: 10.00px;">sharding</a><a href="/tags/sign/" style="font-size: 10.00px;">sign</a><a href="/tags/token/" style="font-size: 10.00px;">token</a><a href="/tags/加密/" style="font-size: 10.00px;">加密</a><a href="/tags/日志分析/" style="font-size: 10.00px;">日志分析</a><a href="/tags/游戏/" style="font-size: 10.00px;">游戏</a><a href="/tags/游戏时间过滤/" style="font-size: 10.00px;">游戏时间过滤</a>
 					</div>
 				</section>
 				
@@ -170,6 +170,53 @@
 	</div>
 </nav>
       
+  
+    <article id="post-游戏时间通过修改时区被绕过" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/25/游戏时间通过修改时区被绕过/" class="article-date">
+  	<time datetime="2015-08-25T03:49:26.000Z" itemprop="datePublished">Aug 25 2015</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/游戏时间过滤/">游戏时间过滤</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/25/游戏时间通过修改时区被绕过/">游戏时间通过修改时区被绕过</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>游戏中的某些玩法或者活动经常是定时的，一天中的某个时段或者某几天才可以玩。这种玩法的一个做法是，通过游戏端来控制游戏入口，只有在该时间段才会出现该入口。游戏端的时间一般是由服务器控制的，所以一般通过修改手机时间是无法显示游戏入口的。<br>但是，上述的方法有一个漏洞，当玩家修改手机时区时，服务器返回的时间戳是没有时区概念的，不同时区，时间存在差异，会导致设置时区（比如东9区）的玩家会提前进入游戏，达到某种领先优势的目的。<br>为解决上述问题，不仅游戏端进行时间过滤，服务器端也需要进行时间控制。即使玩家通过某些手段绕过游戏端的限制，请求达到服务器后，也不会得到正常处理。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-手动修改时间导致crontab不能执行" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -817,55 +864,6 @@ redis 127.0.0.1:53000&gt;</span> zrange test <span class="number">0</span> -<spa
     <span class="keyword">return</span> <span class="variable">$point</span> &gt; <span class="number">20000</span> ? ceil(<span class="variable">$point</span> / <span class="number">20000</span>) : <span class="variable">$point</span>;
 }
 </code></pre><p>其他的排行也类似，不过是选取不同的常数。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-iTerm-Term-vim配色方案" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/12/11/iTerm-Term-vim配色方案/" class="article-date">
-  	<time datetime="2014-12-11T04:47:19.000Z" itemprop="datePublished">Dec 11 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/11/iTerm-Term-vim配色方案/">iTerm/Term/vim配色方案</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>小伙伴们应该也对编辑器的配色头疼，并不时地更新自己的配色。个人也比较头疼，最终找到一个不错的配色方案，支持iterm、vim、emacs、netbeans等等。<br>给出github地址：<a href="https://github.com/altercation/solarized。" target="_blank" rel="external">https://github.com/altercation/solarized。</a></p>
-<h3 id="Terminal/iTerm2">Terminal/iTerm2</h3>
-<p>Mac OS X 自带的 Terminal 和免费的 iTerm2 都是很好用的工具，iTerm2 可以切分成多窗口，更方便一些。<br>如果你使用的是 Terminal 的话，在 solarized/osx-terminal.app-colors-solarized 下双击 Solarized Dark ansi.terminal 和 Solarized Light ansi.terminal 就会自动导入两种配色方案 Dark 和 Light 到 Terminal.app 里。<br>如果你使用的是 iTerm2 的话，到 solarized/iterm2-colors-solarized 下双击 Solarized Dark.itermcolors 和 Solarized Light.itermcolors 两个文件就可以把配置文件导入到 iTerm 里。</p>
 
       
     </div>
