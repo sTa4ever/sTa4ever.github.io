@@ -109,7 +109,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud">
-						<a href="/tags/2014/" style="font-size: 10.00px;">2014</a><a href="/tags/NetBeans/" style="font-size: 10.00px;">NetBeans</a><a href="/tags/game/" style="font-size: 10.00px;">game</a><a href="/tags/gdb/" style="font-size: 10.00px;">gdb</a><a href="/tags/http/" style="font-size: 10.00px;">http</a><a href="/tags/ide/" style="font-size: 10.00px;">ide</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mongodb/" style="font-size: 15.00px;">mongodb</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/php/" style="font-size: 20.00px;">php</a><a href="/tags/rank/" style="font-size: 10.00px;">rank</a><a href="/tags/redis/" style="font-size: 10.00px;">redis</a><a href="/tags/sharding/" style="font-size: 10.00px;">sharding</a><a href="/tags/sign/" style="font-size: 10.00px;">sign</a><a href="/tags/token/" style="font-size: 10.00px;">token</a><a href="/tags/加密/" style="font-size: 10.00px;">加密</a><a href="/tags/日志分析/" style="font-size: 10.00px;">日志分析</a><a href="/tags/游戏/" style="font-size: 10.00px;">游戏</a><a href="/tags/游戏时间过滤/" style="font-size: 10.00px;">游戏时间过滤</a>
+						<a href="/tags/2014/" style="font-size: 10.00px;">2014</a><a href="/tags/NetBeans/" style="font-size: 10.00px;">NetBeans</a><a href="/tags/game/" style="font-size: 10.00px;">game</a><a href="/tags/gdb/" style="font-size: 10.00px;">gdb</a><a href="/tags/http/" style="font-size: 10.00px;">http</a><a href="/tags/ide/" style="font-size: 10.00px;">ide</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mongodb/" style="font-size: 20.00px;">mongodb</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/php/" style="font-size: 20.00px;">php</a><a href="/tags/rank/" style="font-size: 10.00px;">rank</a><a href="/tags/redis/" style="font-size: 10.00px;">redis</a><a href="/tags/sharding/" style="font-size: 10.00px;">sharding</a><a href="/tags/sign/" style="font-size: 10.00px;">sign</a><a href="/tags/token/" style="font-size: 10.00px;">token</a><a href="/tags/加密/" style="font-size: 10.00px;">加密</a><a href="/tags/日志分析/" style="font-size: 10.00px;">日志分析</a><a href="/tags/游戏/" style="font-size: 10.00px;">游戏</a><a href="/tags/游戏时间过滤/" style="font-size: 10.00px;">游戏时间过滤</a>
 					</div>
 				</section>
 				
@@ -170,6 +170,54 @@
 	</div>
 </nav>
       
+  
+    <article id="post-mongodb导入导出" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/27/mongodb导入导出/" class="article-date">
+  	<time datetime="2015-08-27T08:37:36.000Z" itemprop="datePublished">Aug 27 2015</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongodb/">mongodb</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/27/mongodb导入导出/">mongodb导入导出</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code><span class="title">mongoexport</span> -h <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">35050</span> -d database -c collection -o <span class="typedef"><span class="keyword">data</span>.json</span>
+<span class="title">mongoimport</span> -h <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">35050</span> -d database -c collection <span class="comment">--file data.json</span>
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-游戏时间通过修改时区被绕过" class="article article-type-post" itemscope itemprop="blogPost">
   
