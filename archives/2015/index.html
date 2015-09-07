@@ -109,7 +109,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud">
-						<a href="/tags/2014/" style="font-size: 10.00px;">2014</a><a href="/tags/NetBeans/" style="font-size: 10.00px;">NetBeans</a><a href="/tags/game/" style="font-size: 10.00px;">game</a><a href="/tags/gdb/" style="font-size: 10.00px;">gdb</a><a href="/tags/http/" style="font-size: 10.00px;">http</a><a href="/tags/ide/" style="font-size: 10.00px;">ide</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mongodb/" style="font-size: 20.00px;">mongodb</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/php/" style="font-size: 20.00px;">php</a><a href="/tags/rank/" style="font-size: 10.00px;">rank</a><a href="/tags/redis/" style="font-size: 10.00px;">redis</a><a href="/tags/sharding/" style="font-size: 10.00px;">sharding</a><a href="/tags/sign/" style="font-size: 10.00px;">sign</a><a href="/tags/token/" style="font-size: 10.00px;">token</a><a href="/tags/加密/" style="font-size: 10.00px;">加密</a><a href="/tags/日志分析/" style="font-size: 10.00px;">日志分析</a><a href="/tags/游戏/" style="font-size: 10.00px;">游戏</a><a href="/tags/游戏时间过滤/" style="font-size: 10.00px;">游戏时间过滤</a>
+						<a href="/tags/2014/" style="font-size: 10.00px;">2014</a><a href="/tags/NetBeans/" style="font-size: 10.00px;">NetBeans</a><a href="/tags/game/" style="font-size: 10.00px;">game</a><a href="/tags/gdb/" style="font-size: 10.00px;">gdb</a><a href="/tags/http/" style="font-size: 10.00px;">http</a><a href="/tags/ide/" style="font-size: 10.00px;">ide</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mongo/" style="font-size: 10.00px;">mongo</a><a href="/tags/mongodb/" style="font-size: 20.00px;">mongodb</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/php/" style="font-size: 20.00px;">php</a><a href="/tags/rank/" style="font-size: 10.00px;">rank</a><a href="/tags/redis/" style="font-size: 10.00px;">redis</a><a href="/tags/sharding/" style="font-size: 10.00px;">sharding</a><a href="/tags/sign/" style="font-size: 10.00px;">sign</a><a href="/tags/token/" style="font-size: 10.00px;">token</a><a href="/tags/加密/" style="font-size: 10.00px;">加密</a><a href="/tags/日志分析/" style="font-size: 10.00px;">日志分析</a><a href="/tags/游戏/" style="font-size: 10.00px;">游戏</a><a href="/tags/游戏时间过滤/" style="font-size: 10.00px;">游戏时间过滤</a>
 					</div>
 				</section>
 				
@@ -170,6 +170,53 @@
 	</div>
 </nav>
       
+  
+    <article id="post-mongo更新数据过大的问题" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/09/07/mongo更新数据过大的问题/" class="article-date">
+  	<time datetime="2015-09-07T04:03:34.000Z" itemprop="datePublished">Sep 7 2015</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongo/">mongo</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/07/mongo更新数据过大的问题/">mongo更新数据过大的问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>php脚本更新mongo时，如果存在数字作为key，mongo会将其作为数组，当数字过大时，报can’t backfill array to larger than 1,500,000 elements的错误，所以需要将数字key强制转化为字符串去处理。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-mongodb导入导出" class="article article-type-post" itemscope itemprop="blogPost">
   

@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: redis | sTa4ever 博客</title>
+  <title>Archives: 2015/9 | sTa4ever 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="sTa4ever 博客">
-<meta property="og:url" content="http://sta4ever.github.io/tags/redis/">
+<meta property="og:url" content="http://sta4ever.github.io/archives/2015/09/">
 <meta property="og:site_name" content="sTa4ever 博客">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -171,15 +171,15 @@
 </nav>
       
   
-    <article id="post-redis有序集根据key排序问题" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-mongo更新数据过大的问题" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/12/12/redis有序集根据key排序问题/" class="article-date">
-  	<time datetime="2014-12-12T03:17:21.000Z" itemprop="datePublished">Dec 12 2014</time>
+      <a href="/2015/09/07/mongo更新数据过大的问题/" class="article-date">
+  	<time datetime="2015-09-07T04:03:34.000Z" itemprop="datePublished">Sep 7 2015</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/game/">game</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rank/">rank</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongo/">mongo</a></li></ul>
 
     </div>
   
@@ -192,7 +192,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/12/redis有序集根据key排序问题/">redis有序集根据key排序问题</a>
+      <a class="article-title" href="/2015/09/07/mongo更新数据过大的问题/">mongo更新数据过大的问题</a>
     </h1>
   
 
@@ -200,40 +200,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="redis_有序集达不到预期排行的问题">redis 有序集达不到预期排行的问题</h3>
-<p>游戏中经常用redis的有序集做排行，排行的key采用uid，排序积分用游戏数值。不同玩家，游戏数值经常相同，理想情况下，应该是早达到该数值的玩家排行在前。<br>由于redis有序集具有排行积分相同的，按照key进行排序的特性，我们的排序总是达不到预期的结果。<br>比如下面一个示例:</p>
-<pre><code><span class="input"><span class="prompt">redis 127.0.0.1:53000&gt;</span> del test</span>
-<span class="input"><span class="prompt">(integer) 1
-redis 127.0.0.1:53000&gt;</span> zadd test <span class="number">10</span> <span class="number">1</span></span>
-<span class="input"><span class="prompt">(integer) 1
-redis 127.0.0.1:53000&gt;</span> zadd test <span class="number">10</span> <span class="number">3</span></span>
-<span class="input"><span class="prompt">(integer) 1
-redis 127.0.0.1:53000&gt;</span> zadd test <span class="number">10</span> <span class="number">2</span></span>
-<span class="input"><span class="prompt">(integer) 1
-redis 127.0.0.1:53000&gt;</span> zrange test <span class="number">0</span> -<span class="number">1</span> withscores</span>
-<span class="number">1</span>) <span class="string">"1"</span>
-<span class="number">2</span>) <span class="string">"10"</span>
-<span class="number">3</span>) <span class="string">"2"</span>
-<span class="number">4</span>) <span class="string">"10"</span>
-<span class="number">5</span>) <span class="string">"3"</span>
-<span class="number">6</span>) <span class="string">"10"</span>
-</code></pre><p>其实我们期望的排序应该是1、3、2。</p>
-<h3 id="排行积分中增加时间解决该问题">排行积分中增加时间解决该问题</h3>
-<p>我们期望越早进入排行的玩家排行在前，如果用redis的有序集做排行，仅用游戏数值做排行积分无法满足我们的需求，考虑到时间因素，因而想到将时间加入的排行积分也就水到渠成。<br>具体的算法以下面的周排行为例：</p>
-<pre><code><span class="function"><span class="keyword">function</span> <span class="title">getRedisPoint</span><span class="params">(<span class="variable">$point</span>)</span>
-</span>{
-    <span class="variable">$_t</span>    = time();
-    <span class="variable">$index</span> = date(<span class="string">'N'</span>, <span class="variable">$_t</span>);
-    <span class="variable">$begin</span> = strtotime(date(<span class="string">'Y-m-d'</span>, <span class="variable">$_t</span>));
-    <span class="variable">$min</span>   = (<span class="variable">$index</span> - <span class="number">1</span>) * <span class="number">1440</span> + ceil((SVR_NOW - <span class="variable">$begin</span>) / <span class="number">60</span>);
-    <span class="keyword">return</span> <span class="variable">$point</span> * <span class="number">20000</span> - <span class="variable">$min</span>;
-}
-</code></pre><p>上例为计算redis周排行的一个示例，1440是一天的分钟数（60*24），一周总共10080，为计算方便采用20000，当然可以选择大于10080的任意数值。<br>计算真正积分的算法如下：</p>
-<pre><code><span class="function"><span class="keyword">function</span> <span class="title">getRealPoint</span><span class="params">(<span class="variable">$point</span>)</span>
-</span>{
-    <span class="keyword">return</span> <span class="variable">$point</span> &gt; <span class="number">20000</span> ? ceil(<span class="variable">$point</span> / <span class="number">20000</span>) : <span class="variable">$point</span>;
-}
-</code></pre><p>其他的排行也类似，不过是选取不同的常数。</p>
+        <p>php脚本更新mongo时，如果存在数字作为key，mongo会将其作为数组，当数字过大时，报can’t backfill array to larger than 1,500,000 elements的错误，所以需要将数字key强制转化为字符串去处理。</p>
 
       
     </div>
