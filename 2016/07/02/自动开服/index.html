@@ -3,38 +3,29 @@
 <head>
   <meta charset="utf-8">
   
-  <title>token设计 | sTa4ever 博客</title>
+  <title>自动开服 | sTa4ever 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="token作为http通信安全性方面的一个验证被广泛使用。不同的业务场景，token的设计也不同。不过通常来说，token包含下面特性：1）必要的业务数据；2）签名串；3）自验证；4）可解析。
-游戏通信的一种token设计
-下面就游戏通信方面给出一个设计，直接给出php代码
-/**
- * 获取通信access token
- *
- * @param string $platform 游戏平台
- *">
+  <meta name="description" content="开服是多服游戏运营中必定遇到的一个问题，如何开服，怎么执行开服，如何避免服务器开服错误，都是一个问题。
+常用的开服方式
+我们考虑的开服方式有下面三种：手动维护开服、自动开服、自动人工相结合
+手动维护开服
+手动维护开服是指通过GM或者其他工具提前将服务器配置好，包含：开服时间、服务器名称等等。如果有配置变更，需要手动修改，并且服务器名称需要人工去重，这个也是比较常用的开服方式（我们此前的一款游戏就是">
 <meta property="og:type" content="article">
-<meta property="og:title" content="token设计">
-<meta property="og:url" content="http://sta4ever.github.io/2014/12/16/token设计/">
+<meta property="og:title" content="自动开服">
+<meta property="og:url" content="http://sta4ever.github.io/2016/07/02/自动开服/">
 <meta property="og:site_name" content="sTa4ever 博客">
-<meta property="og:description" content="token作为http通信安全性方面的一个验证被广泛使用。不同的业务场景，token的设计也不同。不过通常来说，token包含下面特性：1）必要的业务数据；2）签名串；3）自验证；4）可解析。
-游戏通信的一种token设计
-下面就游戏通信方面给出一个设计，直接给出php代码
-/**
- * 获取通信access token
- *
- * @param string $platform 游戏平台
- *">
+<meta property="og:description" content="开服是多服游戏运营中必定遇到的一个问题，如何开服，怎么执行开服，如何避免服务器开服错误，都是一个问题。
+常用的开服方式
+我们考虑的开服方式有下面三种：手动维护开服、自动开服、自动人工相结合
+手动维护开服
+手动维护开服是指通过GM或者其他工具提前将服务器配置好，包含：开服时间、服务器名称等等。如果有配置变更，需要手动修改，并且服务器名称需要人工去重，这个也是比较常用的开服方式（我们此前的一款游戏就是">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="token设计">
-<meta name="twitter:description" content="token作为http通信安全性方面的一个验证被广泛使用。不同的业务场景，token的设计也不同。不过通常来说，token包含下面特性：1）必要的业务数据；2）签名串；3）自验证；4）可解析。
-游戏通信的一种token设计
-下面就游戏通信方面给出一个设计，直接给出php代码
-/**
- * 获取通信access token
- *
- * @param string $platform 游戏平台
- *">
+<meta name="twitter:title" content="自动开服">
+<meta name="twitter:description" content="开服是多服游戏运营中必定遇到的一个问题，如何开服，怎么执行开服，如何避免服务器开服错误，都是一个问题。
+常用的开服方式
+我们考虑的开服方式有下面三种：手动维护开服、自动开服、自动人工相结合
+手动维护开服
+手动维护开服是指通过GM或者其他工具提前将服务器配置好，包含：开服时间、服务器名称等等。如果有配置变更，需要手动修改，并且服务器名称需要人工去重，这个也是比较常用的开服方式（我们此前的一款游戏就是">
 
   
     <link rel="alternative" href="/atom.xml" title="sTa4ever 博客" type="application/atom+xml">
@@ -190,15 +181,15 @@
 		</header>				
 	</div>
 </nav>
-      <article id="post-token设计" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-自动开服" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/12/16/token设计/" class="article-date">
-  	<time datetime="2014-12-16T08:48:08.000Z" itemprop="datePublished">Dec 16 2014</time>
+      <a href="/2016/07/02/自动开服/" class="article-date">
+  	<time datetime="2016-07-02T03:08:55.000Z" itemprop="datePublished">Jul 2 2016</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/token/">token</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/game/">game</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/游戏/">游戏</a></li></ul>
 
     </div>
   
@@ -211,7 +202,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      token设计
+      自动开服
     </h1>
   
 
@@ -219,53 +210,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>token作为http通信安全性方面的一个验证被广泛使用。不同的业务场景，token的设计也不同。<br>不过通常来说，token包含下面特性：1）必要的业务数据；2）签名串；3）自验证；4）可解析。</p>
-<h3 id="游戏通信的一种token设计">游戏通信的一种token设计</h3>
-<p>下面就游戏通信方面给出一个设计，直接给出php代码</p>
-<pre><code><span class="comment">/**
- * 获取通信access token
- *
- *<span class="phpdoc"> @param</span> string $platform 游戏平台
- *<span class="phpdoc"> @param</span> string $section  游戏分区
- *<span class="phpdoc"> @param</span> string $uid      玩家uid
- *<span class="phpdoc"> @param</span> int    $t        时间戳
- *<span class="phpdoc"> @param</span> int    $life     生命周期
- *<span class="phpdoc"> @param</span> string $secret   签名串需要的密钥
- *<span class="phpdoc"> @return</span> string
- */</span>
-<span class="function"><span class="keyword">function</span> <span class="title">getAccessToken</span><span class="params">(<span class="variable">$platform</span>, <span class="variable">$section</span>, <span class="variable">$uid</span>, <span class="variable">$t</span>, <span class="variable">$life</span>, <span class="variable">$secret</span>)</span>
-</span>{
-    <span class="variable">$params</span> = <span class="keyword">array</span>(
-        <span class="string">'platfrom'</span> =&gt; <span class="variable">$platform</span>,
-        <span class="string">'section'</span>  =&gt; <span class="variable">$section</span>,
-        <span class="string">'uid'</span>      =&gt; <span class="variable">$uid</span>,
-        <span class="string">'t'</span>        =&gt; <span class="variable">$t</span>,
-        <span class="string">'life'</span>     =&gt; <span class="variable">$life</span>,
-    );
-    <span class="variable">$sign</span> = getSign(<span class="variable">$params</span>, <span class="variable">$secret</span>); <span class="comment">// 该接口参照以前写的签名设计</span>
-    <span class="keyword">return</span> sprintf(<span class="string">"1.%s.%s.%d.%d.$d.$s"</span>, <span class="variable">$platform</span>, <span class="variable">$section</span>, <span class="variable">$uid</span>, <span class="variable">$t</span>, <span class="variable">$life</span>, <span class="variable">$sign</span>);
-}
-
-<span class="comment">/**
- * 检测access token有效性
- * 
- *<span class="phpdoc"> @param</span> string $token
- *<span class="phpdoc"> @return</span> bool
- */</span>
-<span class="function"><span class="keyword">function</span> <span class="title">checkAccessToken</span><span class="params">()</span>
-</span>{
-    <span class="keyword">list</span>(<span class="variable">$type</span>, platform, <span class="variable">$section</span>, <span class="variable">$uid</span>, <span class="variable">$t</span>, <span class="variable">$life</span>, <span class="variable">$sign</span>) = explode(<span class="string">'.'</span>, <span class="variable">$token</span>);
-    <span class="variable">$params</span> = <span class="keyword">array</span>(
-        <span class="string">'platfrom'</span> =&gt; <span class="variable">$platform</span>,
-        <span class="string">'section'</span>  =&gt; <span class="variable">$section</span>,
-        <span class="string">'uid'</span>      =&gt; <span class="variable">$uid</span>,
-        <span class="string">'t'</span>        =&gt; <span class="variable">$t</span>,
-        <span class="string">'life'</span>     =&gt; <span class="variable">$life</span>,
-    );
-    <span class="keyword">return</span> <span class="variable">$sign</span> == getSign(<span class="variable">$params</span>, <span class="variable">$secret</span>)
-}
-</code></pre><h3 id="时效性解决">时效性解决</h3>
-<p>上面给出的算法，能验证token的正确性，也可以通过（$t + $life）小于当前时间戳来简单处理时效问题。但是在生命周期中，如果多点登录，任一登陆点的token都有效。<br>为解决这一问题，一般会采用redis或者memcache，存储每次登录的时间，验证token时，可通过$t与登录时间的比对，验证token生命周期。<br>上面的解决方法仍由一个缺陷，玩家单点登录，如果申请多个token，那么也会有多个有效token。我们可以在省城token时，更新缓存时间来解决问题。有人说，可以通过存储token，当重新申请token时，如果原有token有效，直接返回原token。token的自验证就是为了不存储的，所以不建议存储token。</p>
+        <p>开服是多服游戏运营中必定遇到的一个问题，如何开服，怎么执行开服，如何避免服务器开服错误，都是一个问题。</p>
+<h3 id="常用的开服方式">常用的开服方式</h3>
+<p>我们考虑的开服方式有下面三种：手动维护开服、自动开服、自动人工相结合</p>
+<h5 id="手动维护开服">手动维护开服</h5>
+<p>手动维护开服是指通过GM或者其他工具提前将服务器配置好，包含：开服时间、服务器名称等等。如果有配置变更，需要手动修改，并且服务器名称需要人工去重，这个也是比较常用的开服方式（我们此前的一款游戏就是采用的这种方式）。<br>这种方式的有点是可控性比较高，可以根据需求随时修改游戏名称，游戏时间（当然是未开的服务器，已开服的不建议修改）。不过也是由于人工参与的比较多，维护比较麻烦，并且有时人工操作出错。</p>
+<h5 id="自动开服">自动开服</h5>
+<p>自动开服，是根据一定的策略，通过定时脚本去自动开服的一种方式。<br>一般自动开服的策略有两种：</p>
+<ul>
+<li>服务器状态（注册人数、活跃人数、机器性能等等），这个根据游戏需求可以做不同的选择，这种方式一般在。</li>
+<li>每隔一段时间定时开服，比如每3天11:00开一组服务器。这种方式一般用于运营稳定的游戏，新进入玩家相对固定时使用。<br>该种方式优点是：维护成本比较低。但是确定也比较明显：不够灵活，并且需要预先设置一批服务器。</li>
+</ul>
+<h5 id="半自动开服">半自动开服</h5>
+<p>半自动开服是在自动开服的基础上加上人工干预。举例来说，运营稳定时才用自动开服的方式，但是某段时间要做大活动，大力推广，预估要有大量玩家流入，就可以在这段时间预设几个服务器，达到时间开启。</p>
+<p>各个方案都有自己的优缺点，可以根据自己需求选择对应的方案</p>
 
       
     </div>
@@ -278,18 +236,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2014/12/18/gdb调试php/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">&lt;</strong>
-      <div class="article-nav-title">
-        
-          gdb调试php
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/12/13/几种加密算法/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">几种加密算法</div>
+    <a href="/2015/09/07/mongo更新数据过大的问题/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">mongo更新数据过大的问题</div>
       <strong class="article-nav-caption">&gt;</strong>
     </a>
   
@@ -318,7 +267,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="token设计" data-title="token设计" data-url="http://sta4ever.github.io/2014/12/16/token设计/"></div>
+	<div class="ds-thread" data-thread-key="自动开服" data-title="自动开服" data-url="http://sta4ever.github.io/2016/07/02/自动开服/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

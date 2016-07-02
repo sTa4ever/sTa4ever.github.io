@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2014/12 | sTa4ever 博客</title>
+  <title>Archives: 2016 | sTa4ever 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="sTa4ever 博客">
-<meta property="og:url" content="http://sta4ever.github.io/archives/2014/12/page/2/">
+<meta property="og:url" content="http://sta4ever.github.io/archives/2016/">
 <meta property="og:site_name" content="sTa4ever 博客">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -171,15 +171,15 @@
 </nav>
       
   
-    <article id="post-接口操作时间统计" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-自动开服" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/12/08/接口操作时间统计/" class="article-date">
-  	<time datetime="2014-12-08T08:08:42.000Z" itemprop="datePublished">Dec 8 2014</time>
+      <a href="/2016/07/02/自动开服/" class="article-date">
+  	<time datetime="2016-07-02T03:08:55.000Z" itemprop="datePublished">Jul 2 2016</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日志分析/">日志分析</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/game/">game</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/游戏/">游戏</a></li></ul>
 
     </div>
   
@@ -192,7 +192,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/08/接口操作时间统计/">接口操作时间统计</a>
+      <a class="article-title" href="/2016/07/02/自动开服/">自动开服</a>
     </h1>
   
 
@@ -200,11 +200,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>关于服务器接口访问的操作时间简单分析，通过awk实现。</p>
-<pre><code>cat server.log.<span class="number">20141201</span> | awk '{gsub(/[^<span class="number">0</span>-<span class="number">9</span>]/,<span class="string">""</span>,$<span class="number">8</span>);a[$<span class="number">3</span>]+=$<span class="number">8</span>;b[$<span class="number">3</span>]+=<span class="number">1</span>} <span class="type">END</span> {<span class="keyword">for</span>( i <span class="keyword">in</span> a) {printf(<span class="string">"%d\t%5.2f\t%s\n"</span>,b[i], a[i]/b[i],i) }}'
-</code></pre><p>获取某个操作包好某项信息的统计信息</p>
-<pre><code>cat server.log.<span class="number">20141201</span> | awk '{i=index($<span class="number">3</span>,<span class="string">"actionID"</span>);<span class="keyword">if</span>(i&gt;<span class="number">0</span>){s=substr($<span class="number">3</span>,i+<span class="number">11</span>,<span class="number">1</span>);a[s]+=<span class="number">1</span>;}}<span class="type">END</span>{<span class="keyword">for</span>(ii <span class="keyword">in</span> a) printf(<span class="string">"%s\t%d\n"</span>,ii, a[ii]);}'
-</code></pre>
+        <p>开服是多服游戏运营中必定遇到的一个问题，如何开服，怎么执行开服，如何避免服务器开服错误，都是一个问题。</p>
+<h3 id="常用的开服方式">常用的开服方式</h3>
+<p>我们考虑的开服方式有下面三种：手动维护开服、自动开服、自动人工相结合</p>
+<h5 id="手动维护开服">手动维护开服</h5>
+<p>手动维护开服是指通过GM或者其他工具提前将服务器配置好，包含：开服时间、服务器名称等等。如果有配置变更，需要手动修改，并且服务器名称需要人工去重，这个也是比较常用的开服方式（我们此前的一款游戏就是采用的这种方式）。<br>这种方式的有点是可控性比较高，可以根据需求随时修改游戏名称，游戏时间（当然是未开的服务器，已开服的不建议修改）。不过也是由于人工参与的比较多，维护比较麻烦，并且有时人工操作出错。</p>
+<h5 id="自动开服">自动开服</h5>
+<p>自动开服，是根据一定的策略，通过定时脚本去自动开服的一种方式。<br>一般自动开服的策略有两种：</p>
+<ul>
+<li>服务器状态（注册人数、活跃人数、机器性能等等），这个根据游戏需求可以做不同的选择，这种方式一般在。</li>
+<li>每隔一段时间定时开服，比如每3天11:00开一组服务器。这种方式一般用于运营稳定的游戏，新进入玩家相对固定时使用。<br>该种方式优点是：维护成本比较低。但是确定也比较明显：不够灵活，并且需要预先设置一批服务器。</li>
+</ul>
+<h5 id="半自动开服">半自动开服</h5>
+<p>半自动开服是在自动开服的基础上加上人工干预。举例来说，运营稳定时才用自动开服的方式，但是某段时间要做大活动，大力推广，预估要有大量玩家流入，就可以在这段时间预设几个服务器，达到时间开启。</p>
+<p>各个方案都有自己的优缺点，可以根据自己需求选择对应的方案</p>
+
       
     </div>
     <footer class="article-footer">
@@ -221,10 +231,6 @@
 
 
   
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2014/12/">&laquo; Prev</a><a class="page-number" href="/archives/2014/12/">1</a><span class="page-number current">2</span>
-    </nav>
   
 
       <footer id="footer">
